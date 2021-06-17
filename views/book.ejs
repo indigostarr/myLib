@@ -5,46 +5,30 @@
     <meta charset="UTF-8" />
     <title>Notebooks</title>
   </head>
-<body>
-  <h1>Personal Library</h1>  
-    
-      <!-- Create instructions -->
+  <body>
+    <h1>Personal Library</h1>
+
+    <!-- Create instructions -->
     <div id="header">
-      <img id="header-image" src="#"/>
-  </div>
-  <main>
+      <img
+        id="header-image"
+        src="<%= book.volumeInfo.imageLinks.thumbnail %>"
+      />
+    </div>
+    <main>
+      <a href="/"><div id="header">Book Search</div></a>
 
-    <a href="/"><div id="header">Book Search
-    </div></a>
-  <!-- Create a form to input new books
-  <div id="book-create-div">
-      <p>Add books to the library and indicate if you have read them or would like to read them in the future</p>
-      <form action="/books" method="POST" id="book-form">
-          <label><b>Book Title</b></label><input type="text" id="book-title" class="new-book" name="title" alt="Book Title"  required/></label>
-          <label><b>Author</b><input type="text" id="book-author" class="new-book" alt="Author" name="author" required/></label>
-          <label><b>Read</b></label>
-          <label class="toggle"><input type="checkbox" id="read" class="new-book" alt="Read" name="read"/><span class="slider"></span></label>
-          <button type="submit" id="submit"><b>Add</b></button>
+      <!-- Create a display area to show the new books -->
+
+      <form action="/books" method="POST" id="book-search">
+        <div id="<%= book.id %>" name="<%= book.id %>"></div>
+
+        <span name="title"> <%= book.volumeInfo.title %></span>
+        <span name="author"> <%= book.volumeInfo.authors %></span>
+        <span name="pages"> <%= book.volumeInfo.pages %></span>
+        <button type="submit" id="book-search__add">Add</button><br />
+        <span name="description"> <%= book.volumeInfo.description %></span>
       </form>
-  </div> -->
-
-  <!-- Create a display area to show the new books -->
-      <div id="book-display" class="hidden">Books</div>
-      <ul class="books">
-        <% for(var i = 0; i < books.length; i++) {%>
-          <li class="books">
-            <!-- Output name from the iterated book -->
-        
-            <div id= <%= books[i]._id %> ></div>
-            <a href="/books/<%= books[i]._id %>">
-            <span> <%= books[i].title %></span>:</a>
-            <span> <%= books[i].author %></span>
-            <span> <%= books[i].read %></span>
-            
-          </li>
-        <% } %>
-      </ul>
-  </div>
-</main>
-    
-</body>
+    </main>
+  </body>
+</html>

@@ -17,17 +17,14 @@ const mongoose = require("mongoose");
 const https = require("https");
 const request = require("request");
 
-// public url https://www.googleapis.com/books/v1/volumes?q=%22crucible%22
-
-// axios
-const displaySearchResultData = async (title) => {
+const displayBookData = async (bookId) => {
   try {
     return await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=%22${title}%22`
+      `https://www.googleapis.com/books/v1/volumes/${bookId}`
     );
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = ("displaySearchResultData", displaySearchResultData);
+module.exports = ("displayBookData", displayBookData);

@@ -13,15 +13,18 @@
         <% for(var i = 0; i < books.length; i++) {%>
         <li class="books">
           <!-- Output name from the iterated book -->
-
-          <div id="<%" ="books[i].id" %>></div>
-          <a href="/books/<%= books[i].id %>">
-            <span> <%= books[i].items.volumeInfo.title %></span>:</a
+          <form action="/books" method="POST" id="book-search">
+          <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
+          <a href="/search/<%= books[i].id %>">
+            <span name="title"> <%= books[i].volumeInfo.title %></span></a
           >
-          <span> <%= books[i].volumeInfo.author %></span>
-          <span> <%= books[i].volumeInfo.description %></span>
+          <span name="author"> <%= books[i].volumeInfo.authors %></span>
+          <span name="pages"> <%= books[i].volumeInfo.pages %></span>
+          <button type="submit" id="book-search__add">Add</button><br />
+          <span name="description"> <%= books[i].volumeInfo.description %></span>
         </li>
         <% } %>
+      </form>
       </ul>
     </div>
   </body>

@@ -1,7 +1,8 @@
 const Book = require("../models/book.model.js");
 const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
-const displayBookData = require("../app/app.js");
+const displaySearchResultData = require("../app/app.js");
+const displayBookData = require("../app/bookdisplay.js");
 
 // homepage
 exports.homepage = (req, res) => {
@@ -15,29 +16,40 @@ exports.search = (req, res) => {
   const bookSearch = new Search({
     title: req.body.title,
   });
-  console.log(bookSearch.title);
 
-  let bookData = displayBookData();
-  console.log(bookData.json());
+  const bookData = displaySearchResultData(bookSearch.title);
+  bookData
+    .then((response) => {
+      res.render("search.ejs", { books: response.data.items });
+    })
+    .catch((error) => {
+      return res.status(404).send({
+        message: "no data returned",
+      });
+    });
+};
 
-  // bookData
-  //   .then((data) => {
-  //     console.log(data, "test");
-  //     res.render("search.ejs", { books: data });
-  //   })
-  //   .catch((error) => {
-  //     return res.status(404).send({
-  //       message: "no data returned",
-  //     });
-  //   });
+exports.viewSearchedBook = (req, res) => {
+  console.log(req.params.bookId);
 
-  // app.get(
-  //   `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
-  //   (req, res) => {
-  //     console.log(res.json());
-  //   }
-  // );
-  // res.render("search.ejs", { books: data });
+  const bookSearch = new Book({
+    title: req.body.title,
+    bookId: req.body.id,
+  });
+
+  // console.log(req.body.id);
+
+  const bookData = displayBookData(req.params.bookId);
+  bookData
+    .then((response) => {
+      console.log(response.data);
+      res.render("book.ejs", { book: response.data });
+    })
+    .catch((error) => {
+      return res.status(404).send({
+        message: "no data returned",
+      });
+    });
 };
 
 // Create and Save
