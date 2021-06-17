@@ -5,7 +5,7 @@ const BookSchema = mongoose.Schema(
     title: String,
     author: String,
     pages: Number,
-    read: Boolean,
+    read: String,
     review: String,
   },
   {

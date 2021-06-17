@@ -7,22 +7,21 @@
 <body>
   <h1>Add books</h1>
   <div id="book-search">
-    <form id="book-form">
       <form action="/search" method="POST" id="book-search">
             <input type="text" id="search" name="title" placeholder="book"/>
-            <button type="submit">Search by Title</button>
-        </form>
+            <button type="submit" id="book-form__search">Search by Title</button>
         </div>
         <div></div>
         
-    <form action="/books" method="POST" id="book-form">
+
+    <!-- <form action="/books" method="POST" id="book-form">
         <label><b>Book Title</b></label><input type="text" id="book-title" class="new-book" name="title" alt="Book Title"  required/></label>
         <label><b>Author</b><input type="text" id="book-author" class="new-book" alt="Author" name="author" required/></label>
         <label><b>Read</b></label>
         <label class="toggle"><input type="checkbox" id="read" class="new-book" alt="Read" name="read"/><span class="slider"></span></label>
-        <button type="submit" id="submit"><b>Add</b></button>
-    </form>
-  <script>
+        <button type="submit" id="book-form__add"><b>Add</b></button>
+    </form> -->
+    <script>
     // const search = document.querySelector("form");
 
     //   search.addEventListener("submit", (e) => {

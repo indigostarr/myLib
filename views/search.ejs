@@ -5,23 +5,24 @@
     <meta charset="UTF-8" />
     <title>myLib</title>
   </head>
-<body>
-  <h1>Add books</h1>
-  <div id="book-search">
-    <form id="book-form">
-        <form>
-            <input type="text" id="search" placeholder="book"/>
-            <button type="submit">Search by Title</button>
-        </form>
-        </div>
-        <div></div>
-        
-    <form action="/books" method="POST" id="book-form">
-        <label><b>Book Title</b></label><input type="text" id="book-title" class="new-book" name="title" alt="Book Title"  required/></label>
-        <label><b>Author</b><input type="text" id="book-author" class="new-book" alt="Author" name="author" required/></label>
-        <label><b>Read</b></label>
-        <label class="toggle"><input type="checkbox" id="read" class="new-book" alt="Read" name="read"/><span class="slider"></span></label>
-        <button type="submit" id="submit"><b>Add</b></button>
-    </form>
-  <script src='server.js'></script>
-</body>  
+  <body>
+    <h1>Add books</h1>
+    <div id="book-search">
+      Books
+      <ul class="books">
+        <% for(var i = 0; i < books.length; i++) {%>
+        <li class="books">
+          <!-- Output name from the iterated book -->
+
+          <div id="<%" ="books[i].id" %>></div>
+          <a href="/books/<%= books[i].id %>">
+            <span> <%= books[i].items.volumeInfo.title %></span>:</a
+          >
+          <span> <%= books[i].volumeInfo.author %></span>
+          <span> <%= books[i].volumeInfo.description %></span>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </body>
+</html>

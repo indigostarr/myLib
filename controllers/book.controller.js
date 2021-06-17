@@ -1,6 +1,7 @@
 const Book = require("../models/book.model.js");
 const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
+const displayBookData = require("../app/app.js");
 
 // homepage
 exports.homepage = (req, res) => {
@@ -9,18 +10,22 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  console.log("book");
+  // console.log(req.body);
+
   const bookSearch = new Search({
     title: req.body.title,
   });
   console.log(bookSearch.title);
 
-  app.get(
-    `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
-    (req, res) => {
-      console.log(res.json());
-    }
-  );
+  let data = displayBookData();
+  console.log(data, "test");
+  // res.render("search.ejs", { books: data });
+  // app.get(
+  //   `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
+  //   (req, res) => {
+  //     console.log(res.json());
+  //   }
+  // );
   // res.render("search.ejs", { books: data });
 };
 
@@ -46,6 +51,7 @@ exports.create = (req, res) => {
   return book
     .save()
     .then((data) => {
+      console.log(data);
       res.send(data);
       // res.redirect('/search');
     })
@@ -63,7 +69,7 @@ exports.findAll = (req, res) => {
 
   Book.find()
     .then((data) => {
-      res.render("books.ejs", { books: data });
+      res.render("collection.ejs", { books: data });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -145,15 +151,15 @@ exports.delete = (req, res) => {
     .then((book) => {
       if (!book) {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.noteId,
+          message: "book not found with id " + req.params.noteId,
         });
       }
-      res.send({ message: "Note deleted successfully!" });
+      res.send({ message: "book deleted successfully!" });
     })
     .catch((error) => {
       if (error.kind === "ObjectId" || error.name === "NotFound") {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.noteId,
+          message: "book not found with id " + req.params.noteId,
         });
       }
       return res.status(500).send({
