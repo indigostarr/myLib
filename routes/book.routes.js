@@ -4,8 +4,8 @@ module.exports = (app) => {
   // send a GET request to READ HTML file
   app.get("/", books.homepage);
 
-  // send GET for search page
-  // app.get('/search', books.search);
+  //send GET for search page
+  app.post("/search", books.search);
 
   // POST a new book
   app.post("/books", books.create);

@@ -1,4 +1,3 @@
-<!-- search.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,8 +8,8 @@
   <h1>Add books</h1>
   <div id="book-search">
     <form id="book-form">
-        <form>
-            <input type="text" id="search" placeholder="book"/>
+      <form action="/search" method="POST" id="book-search">
+            <input type="text" id="search" name="title" placeholder="book"/>
             <button type="submit">Search by Title</button>
         </form>
         </div>
@@ -23,5 +22,14 @@
         <label class="toggle"><input type="checkbox" id="read" class="new-book" alt="Read" name="read"/><span class="slider"></span></label>
         <button type="submit" id="submit"><b>Add</b></button>
     </form>
-  <!-- <script src='server.js'></script> -->
+  <script>
+    // const search = document.querySelector("form");
+
+    //   search.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+    //     console.log("book");
+    //     // let book = search.elements["search"].value;
+    //     // displayBookData(book);
+    //   });
+  </script>
 </body>  

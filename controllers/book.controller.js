@@ -1,15 +1,28 @@
 const Book = require("../models/book.model.js");
 const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
+const Search = require("../models/search.model.js");
 
 // homepage
 exports.homepage = (req, res) => {
   res.sendFile(fileDir + "/index.html");
 };
 
-// // search page
-// exports.search = (req, res) => {
-//   res.sendFile(fileDir + '/index.html')
-// }
+// search page
+exports.search = (req, res) => {
+  console.log("book");
+  const bookSearch = new Search({
+    title: req.body.title,
+  });
+  console.log(bookSearch.title);
+
+  app.get(
+    `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
+    (req, res) => {
+      console.log(res.json());
+    }
+  );
+  // res.render("search.ejs", { books: data });
+};
 
 // Create and Save
 exports.create = (req, res) => {

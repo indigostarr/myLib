@@ -9,15 +9,14 @@
 // app.use(bodyParser.urlencoded({ extended: true}))
 // app.set('view engine', 'ejs')
 
-const search = document.querySelector('form');
+const search = document.querySelector("form");
 
 // search city
-search.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('book')
-    let book = search.elements['search'].value;
-    displayBookData(book);
-
+search.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("book");
+  let book = search.elements["search"].value;
+  displayBookData(book);
 });
 
 // async function getBookData(book) {
@@ -35,23 +34,24 @@ search.addEventListener('submit', (e) => {
 //     })
 // })
 // }
-  
+
 async function getBookData(book) {
-  await app.get(`https://www.googleapis.com/books/v1/volumes?q=${book}&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`, (req, res) => {
-    return res.json();
-  })
-    
-  };
+  await app.get(
+    `https://www.googleapis.com/books/v1/volumes?q=${book}&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
+    (req, res) => {
+      return res.json();
+    }
+  );
+}
 
 // display data
 function displayBookData(book) {
-    try {
-    getBookData(book)
-    .then(function(response) {
-        console.log(response.items.volumeInfo)
-        // res.render('search.ejs', { books: response.items.volumeInfo});
+  try {
+    getBookData(book).then(function (response) {
+      console.log(response.items.volumeInfo);
+      // res.render('search.ejs', { books: response.items.volumeInfo});
     });
-    } catch(error) {
-        alert(error);
-}
+  } catch (error) {
+    alert(error);
+  }
 }
