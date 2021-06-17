@@ -17,9 +17,20 @@ exports.search = (req, res) => {
   });
   console.log(bookSearch.title);
 
-  let data = displayBookData();
-  console.log(data, "test");
-  // res.render("search.ejs", { books: data });
+  let bookData = displayBookData();
+  console.log(bookData.json());
+
+  // bookData
+  //   .then((data) => {
+  //     console.log(data, "test");
+  //     res.render("search.ejs", { books: data });
+  //   })
+  //   .catch((error) => {
+  //     return res.status(404).send({
+  //       message: "no data returned",
+  //     });
+  //   });
+
   // app.get(
   //   `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`,
   //   (req, res) => {

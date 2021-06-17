@@ -14,30 +14,11 @@ app.set("view engine", "ejs");
 
 const mongoose = require("mongoose");
 const https = require("https");
+const request = require("request");
+
+const url =
+  "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM";
 // function getBookData() {
-//   console.log("book");
-
-//   return fetch(
-//     "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM"
-//   )
-//     .then((response) => {
-//       console.log(response.json());
-//     })
-//     .then((result) => {
-//       console.log(result);
-//       // this.setState({ books: result.items });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
-
-// fetch(
-//   `https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM`
-// )
-//   .then((response) => response.json())
-//   .then((json) => console.log(json))
-//   .catch((err) => console.log("Request Failed", err));
 
 // app
 //   .get(
@@ -62,55 +43,74 @@ const https = require("https");
 //   console.log("cant get api");
 // }
 
-// display data
-function displayBookData() {
-  console.log("book");
+// TESTING 2
+// const displayBookData = () => {
+//   return new Promise((resolve, reject) => {
+//     const url =
+//       "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM";
+//     https
+//       .get(url, (res) => {
+//         res.setEncoding("utf8");
+//         let body = "";
+//         res.on("data", (chunk) => (body += chunk));
+//         res.on("end", () => {
+//           resolve(body);
+//         });
+//         console.log(body);
+//       })
+//       .on("error", reject);
+//   });
+// };
 
-  const url =
-    "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM";
+// TESTING 3
+// // display data
 
-  https
-    .get(url, (res) => {
-      let data = "";
-      res.on("data", (chunk) => {
-        data += chunk;
-      });
-      res.on("end", () => {
-        data = JSON.parse(data);
-        // console.log(data.items);
-        return data;
-      });
-    })
-    .on("error", (err) => {
-      console.log(err.message);
+const req = https
+  .get(url, (res) => {
+    let data = "";
+    res.on("data", (chunk) => {
+      data += chunk;
     });
-  // app
-  //   .get(
-  //     "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM"
-  //   )
-  //   .then((response) => {
-  //     console.log(response.json());
-  //   })
-  //   .then((result) => {
-  //     console.log(result);
-  //     // this.setState({ books: result.items });
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // try {
-  //   getBookData().then(function (response) {
-  //     console.log("book data");
-  //     // console.log(response.items);
-  //     // res.render('search.ejs', { books: response.items.volumeInfo});
-  //   });
-  // } catch (error) {
-  //   console.log("no book data");
-  // }
-}
+    res.on("end", () => {
+      data = JSON.parse(data);
+      // console.log(data.items);
+      return data.items;
+    });
+  })
+  .on("error", (err) => {
+    console.log(err.message);
+  });
 
-console.log(displayBookData());
-module.exports = ("displayBookData", displayBookData);
+//   // req.end();
+
+//   // req.send(data);
+//   // app
+//   //   .get(
+//   //     "https://www.googleapis.com/books/v1/volumes?q=crucible&key=AIzaSyCZBZM-woQWBePfWuMZawx65nfURB1-cCM"
+//   //   )
+//   //   .then((response) => {
+//   //     console.log(response.json());
+//   //   })
+//   //   .then((result) => {
+//   //     console.log(result);
+//   //     // this.setState({ books: result.items });
+//   //   })
+//   //   .catch((error) => {
+//   //     console.log(error);
+//   //   });
+//   // try {
+//   //   getBookData().then(function (response) {
+//   //     console.log("book data");
+//   //     // console.log(response.items);
+//   //     // res.render('search.ejs', { books: response.items.volumeInfo});
+//   //   });
+//   // } catch (error) {
+//   //   console.log("no book data");
+//   // }
+// }
+
+console.log("test", req);
+module.exports = ("displayBookData", req);
 
 /* DOM TESTING */
 
