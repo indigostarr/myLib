@@ -3,6 +3,7 @@ const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
 const displaySearchResultData = require("../app/app.js");
 const displayBookData = require("../app/bookdisplay.js");
+const { response } = require("express");
 
 // homepage
 exports.homepage = (req, res) => {
@@ -30,20 +31,10 @@ exports.search = (req, res) => {
 };
 
 exports.viewSearchedBook = (req, res) => {
-  console.log(req.params.bookId);
-
-  const bookSearch = new Book({
-    title: req.body.title,
-    bookId: req.body.id,
-  });
-
-  // console.log(req.body.id);
-
   const bookData = displayBookData(req.params.bookId);
   bookData
     .then((response) => {
-      console.log(response.data);
-      res.render("book.ejs", { book: response.data });
+      res.render("displayBookData.ejs", { book: response.data });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -63,10 +54,13 @@ exports.create = (req, res) => {
 
   // create new book object
   const book = new Book({
+    bookId: req.body.id,
     title: req.body.title,
-    author: req.body.author,
+    author: req.body.authors,
     pages: req.body.pages,
     read: req.body.read,
+    thumbnail: req.body.thumbnail,
+    description: req.body.description,
     review: "",
   });
 
@@ -74,9 +68,7 @@ exports.create = (req, res) => {
   return book
     .save()
     .then((data) => {
-      console.log(data);
       res.send(data);
-      // res.redirect('/search');
     })
     .catch((error) => {
       return res.status(404).send({
@@ -87,9 +79,7 @@ exports.create = (req, res) => {
 
 // get books from database
 exports.findAll = (req, res) => {
-  // find book
-  console.log("here");
-
+  // find single book
   Book.find()
     .then((data) => {
       res.render("collection.ejs", { books: data });
@@ -111,7 +101,8 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      res.send(data);
+
+      res.render("book.ejs", { book: data });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -134,14 +125,19 @@ exports.update = (req, res) => {
     });
   }
 
+  console.log("updating here");
+  console.log(req.params.bookId);
   // Find book and update
   Book.findByIdAndUpdate(
     req.params.bookId,
     {
+      bookId: req.body.id,
       title: req.body.title,
       author: req.body.author,
       pages: req.body.pages,
       read: req.body.read,
+      thumbnail: req.body.thumbnail,
+      description: req.body.description,
       review: "",
     },
     {

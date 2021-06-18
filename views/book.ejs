@@ -1,34 +1,42 @@
 <!-- book.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Notebooks</title>
-  </head>
-  <body>
-    <h1>Personal Library</h1>
+<% include partials/header.ejs %>
+<body>
+  <h1>Personal Library</h1>
 
-    <!-- Create instructions -->
-    <div id="header">
-      <img
-        id="header-image"
-        src="<%= book.volumeInfo.imageLinks.thumbnail %>"
+  <!-- Create instructions -->
+  <div id="header"></div>
+  <main>
+    <a href="/"><div id="header">Book Search</div></a>
+
+    <!-- Create a display area to show the new books -->
+
+    <form
+      action="/books/<%= book.id %>?_method=PUT"
+      method="POST"
+      id="book-review"
+    >
+      <div id="<%= book.id %>" name="<%= book.id %>"></div>
+      <img id="header-image" src="<%= book.thumbnail %>" /><input
+        type="hidden"
+        name="thumbnail"
+        value="<%= book.thumbnail %>"
       />
-    </div>
-    <main>
-      <a href="/"><div id="header">Book Search</div></a>
-
-      <!-- Create a display area to show the new books -->
-
-      <form action="/books" method="POST" id="book-search">
-        <div id="<%= book.id %>" name="<%= book.id %>"></div>
-
-        <span name="title"> <%= book.volumeInfo.title %></span>
-        <span name="author"> <%= book.volumeInfo.authors %></span>
-        <span name="pages"> <%= book.volumeInfo.pages %></span>
-        <button type="submit" id="book-search__add">Add</button><br />
-        <span name="description"> <%= book.volumeInfo.description %></span>
-      </form>
-    </main>
-  </body>
-</html>
+      <label
+        ><input type="hidden" name="title" value="<%= book.title %>" /> <%=
+        book.title %></label
+      >
+      <label><input type="hidden" name="author" /> <%= book.authors %></label>
+      <label><%= book.pages %><input type="hidden" name="pages" /></label>
+      <label
+        ><%= book.description %> <input type="hidden" name="description"
+      /></label>
+      <input
+        type="text"
+        name="review"
+        style="size: 2000; width: 80%; height: 150px"
+      />
+      <button type="submit" id="book-review__add">Add Review</button><br />
+    </form>
+  </main>
+  <% include partials/footer.ejs %>
+</body>

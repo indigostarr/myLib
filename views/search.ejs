@@ -1,10 +1,5 @@
 <!-- search.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>myLib</title>
-  </head>
+<% include partials/header.ejs %>
   <body>
     <h1>Add books</h1>
     <div id="book-search">
@@ -16,16 +11,15 @@
           <form action="/books" method="POST" id="book-search">
           <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
           <a href="/search/<%= books[i].id %>">
-            <span name="title"> <%= books[i].volumeInfo.title %></span></a
+            <input type="hidden" name="title" value="<%= books[i].volumeInfo.title %>"> <%= books[i].volumeInfo.title %></label></a
           >
-          <span name="author"> <%= books[i].volumeInfo.authors %></span>
-          <span name="pages"> <%= books[i].volumeInfo.pages %></span>
+          <label><input type="hidden" name="author" value="<%= books[i].volumeInfo.authors %>"> <%= books[i].volumeInfo.authors %></label>
+          <label><input type="hidden" name="pages" value="pages"> <%= books[i].volumeInfo.pages %></label>
           <button type="submit" id="book-search__add">Add</button><br />
-          <span name="description"> <%= books[i].volumeInfo.description %></span>
+          <label><input type="hidden"name="description"> <%= books[i].volumeInfo.description %></label>
         </li>
         <% } %>
       </form>
       </ul>
     </div>
-  </body>
-</html>
+    <% include partials/footer.ejs %>

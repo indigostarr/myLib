@@ -1,0 +1,37 @@
+<!-- book.ejs -->
+<% include partials/header.ejs %>
+
+<h1>Personal Library</h1>
+
+<!-- Create instructions -->
+<div id="header"></div>
+<main>
+  <a href="/"><div id="header">Book Search</div></a>
+
+  <!-- Create a display area to show the new books -->
+
+  <form action="/books" method="POST" id="book-search">
+    <div id="<%= book.id %>" name="<%= book.id %>"></div>
+    <img
+      id="header-image"
+      src="<%= book.volumeInfo.imageLinks.thumbnail %>"
+    /><input
+      type="hidden"
+      name="thumbnail"
+      value="<%= book.volumeInfo.imageLinks.thumbnail %>"
+    />
+    <label
+      ><input type="hidden" name="title" value="<%= book.volumeInfo.title %>" />
+      <%= book.volumeInfo.title %></label
+    >
+    <label
+      ><input type="hidden" name="author" /> <%= book.volumeInfo.authors
+      %></label
+    >
+    <label
+      ><%= book.volumeInfo.pages %><input type="hidden" name="pages"
+    /></label>
+    <button type="submit" id="book-search__add">Add</button><br />
+  </form>
+</main>
+<% include partials/footer.ejs %>

@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 // add view engine
 app.set("view engine", "ejs");
+app.use(express.static("styles"));
 
 // Require book routes and models
 require("./routes/book.routes.js")(app);
