@@ -4,7 +4,7 @@
 
 @tailwind utilities;
 
-body {
+/* body {
   font-family: SF Pro Rounded;
   font-style: normal;
   font-weight: bold;
@@ -25,9 +25,9 @@ nav {
   line-height: 18px;
   /* identical to box height */
 
-  color: #383838;
-}
-main {
+/* color: #383838;
+} */
+*/ main {
   margin-left: 194px;
 }
 

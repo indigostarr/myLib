@@ -1,11 +1,99 @@
 <!-- book.ejs -->
 <%- include("partials/header.ejs") %>
+<div class="relative min-h-screen flex">
+  <!-- sidebar -->
+  <!-- text blue 100 will go all the way down the page -->
+  <!-- this is the parent div so will set padding y  -->
+  <div
+    class="
+      bg-gray-50
+      text-black
+      w-64
+      space-y-6
+      py-7
+      px-2
+      absolute
+      inset-y-0
+      left-0
+      transform
+      -translate-x-full
+      md:relative
+      md:translate-x-0
+      transition
+      duration-200
+      ease-in-out
+    "
+  >
+    <!-- logo -->
+    <a
+      href="/books"
+      class="text-black flex-items-center space-x-2 px-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      ><span class="w-8 h-8 text-2x1 font-bold">✨ MyLib</span>
+    </a>
+    <nav>
+      <a
+        href="/"
+        class="
+          block
+          py-2.5
+          px-4
+          rounded
+          transition
+          duration-200
+          hover:bg-gray-100
+        "
+        >🔦 Search</a
+      >
+      <a
+        href="/books/to-read"
+        class="
+          block
+          py-2.5
+          px-4
+          rounded
+          transition
+          duration-200
+          hover:bg-gray-100
+        "
+        >📕 To Read</a
+      >
+      <a
+        href="/books/reading"
+        class="
+          block
+          py-2.5
+          px-4
+          rounded
+          transition
+          duration-200
+          hover:bg-gray-100
+        "
+        >👀 Reading</a
+      >
+      <a
+        href="/books/read"
+        class="
+          block
+          py-2.5
+          px-4
+          rounded
+          transition
+          duration-200
+          hover:bg-gray-100
+        "
+        >📚 Read</a
+      >
 
-<!-- Create instructions -->
-<div id="header"></div>
-<main>
-  <a href="/"><div id="header">🔦 Search</div></a>
-
+      <!-- remove  abosolute and transform and -translate x-full-->
+      <!-- md:relative 
+      md:translate-x-0 these make the sidebar responsive -->
+    
+    </nav>
+  </div>
+  <div class="flex-1 p-10 text-2x1 font-bold">
   <!-- Create a display area to show the new books -->
 
   <form action="/books" method="POST" id="book-search" class="search-results">
