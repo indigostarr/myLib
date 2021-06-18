@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js npm watch"
+    "dev": "nodemon server.js npm watch",
+    "start": "npm build:css && node ./bin/www",
+    "build:css": "npx tailwindcss build ./public/stylesheets/tailwind.css -o ./public/stylesheets/style.css"
   },
   "keywords": [
     "Express",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
+    "stylelint-config-recommended": "^5.0.0",
     "tailwindcss": "^2.2.2"
   }
 }
