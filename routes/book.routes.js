@@ -16,6 +16,9 @@ module.exports = (app) => {
   // GET all book
   app.get("/books", books.findAll);
 
+  // // GET books by status
+  // app.get("/books/:status", books.findByStatus);
+
   // GET a book by ID
   app.get("/books/:bookId", books.findOne);
 
@@ -23,5 +26,5 @@ module.exports = (app) => {
   app.post("/books/:bookId", books.update);
 
   // DELETE a book by ID
-  app.post("/books/delete/:bookId", books.delete);
+  app.get("/books/delete/:bookId", books.delete);
 };

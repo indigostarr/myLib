@@ -8,20 +8,26 @@
             <button type="submit" id="book-form__search">Search by Title</button>
         </div>
       </form>
+      <main>
       <ul class="books">
         <% for(var i = 0; i < books.length; i++) {%>
-        <li class="books">
+        <li class="book-result">
           <!-- Output name from the iterated book -->
           <!-- <form action="/books" method="POST" id="book-search"> -->
           <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
-          <a href="/search/<%= books[i].id %>">
+          <img id="search-image" src="<%= books[i].volumeInfo.imageLinks.smallThumbnail %>" /><input
+        type="hidden"
+        name="thumbnail"
+        value="<%= books[i].volumeInfo.imageLinks.thumbnail %>"
+      />
+      <a href="/search/<%= books[i].id %>"><label>
             <input type="hidden" name="title" value="<%= books[i].volumeInfo.title %>"> <%= books[i].volumeInfo.title %></label></a
           >
           <label><input type="hidden" name="author" value="<%= books[i].volumeInfo.authors %>"> <%= books[i].volumeInfo.authors %></label>
-          <label><input type="hidden" name="pages" value="pages"> <%= books[i].volumeInfo.pages %></label>
+          <label><input type="hidden" name="pages" value="<%= books[i].volumeInfo.pageCount %>"> <%= books[i].volumeInfo.pageCount %></label>
           <!-- <button type="submit" id="book-search__add">Add</button><br /> -->
         </li>
         <% } %>
       </ul>
-    </div>
+    </main>
     <%- include("partials/footer.ejs") %>

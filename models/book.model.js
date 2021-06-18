@@ -6,10 +6,10 @@ const BookSchema = mongoose.Schema(
     title: String,
     author: String,
     pages: Number,
-    read: String,
     thumbnail: String,
     description: String,
     review: String,
+    status: String,
   },
   {
     timestamps: true,

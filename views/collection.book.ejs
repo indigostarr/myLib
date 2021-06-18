@@ -1,7 +1,6 @@
 <!-- book.ejs -->
 <%- include("partials/header.ejs") %>
-<body>
-  <h1>Personal Library</h1>
+
 
   <!-- Create instructions -->
   <div id="header"></div>
@@ -9,10 +8,11 @@
     <a href="/"><div id="header">Book Search</div></a>
 
     <!-- Create a display area to show the new books -->
-
+    <div id="<%= book.id %>" name="<%= book.id %>">
+      <div><%= book.status %></div>
     <form action="/books/<%= book.id %>" method="POST" id="book-review">
       <input name="_method" type="hidden" value="PUT" />
-      <div id="<%= book.id %>" name="<%= book.id %>"></div>
+      
       <img id="header-image" src="<%= book.thumbnail %>" /><input
         type="hidden"
         name="thumbnail"
@@ -22,19 +22,24 @@
         ><input type="hidden" name="title" value="<%= book.title %>" /> <%=
         book.title %></label
       >
-      <label><input type="hidden" name="author" /> <%= book.authors %></label>
+      <label><input type="hidden" name="author" value="<%= book.author %>"/>By <%= book.author %></label>
+      <input type="radio" onchange='this.form.submit();' name="status" class="reading-status" id="to-read" value="to-read"  <% if (book.status === "to-read") { %>checked <% }%>>
+        <label for="to-read" class="reading-status__label">📕 To Read</label>
+        <input type="radio" onchange='this.form.submit();' name="status" class="reading-status" id="read" value="read" <% if (book.status === "read") { %>checked <% }%>><label for="read" class="reading-status__label">📚 Read</label>
+        <input type="radio" onchange='this.form.submit();' name="status" class="reading-status"  id="reading" value="reading" <% if (book.status === "reading") { %>checked <% }%>><label for="reading" class="reading-status__label">👀 Reading</label>
       <label><%= book.pages %><input type="hidden" name="pages" /></label>
-      <label
-        ><%= book.description %> <input type="hidden" name="description"
-      /></label>
+      <label><%= book.description %> <input type="hidden" name="description"
+      value="<%= book.description %>"/></label>
       <input
         type="text"
         name="review"
+        id="review-textarea"
         style="size: 2000; width: 80%; height: 150px"
-      /><%= book.review %>
-      <button type="submit" id="book-review__add">Update Review</button><br />
-      <a href="/books/delete/<%= book.id %>">Delete</a></td> 
+        value="<%= book.review %>"
+      />
+      <a href="/books/delete/<%= book.id %>">Won't Read</a></td> 
     </form>
+  </div>
   </main>
   <%- include("partials/footer.ejs") %>
-</body>
+

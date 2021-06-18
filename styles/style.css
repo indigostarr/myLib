@@ -4,11 +4,28 @@ body {
   font-weight: bold;
   font-size: 15px;
   line-height: 18px;
+  background: #ffffff;
+  color: #383838;
+}
+nav {
+  display: block;
+  width: 194px;
+  height: 100%;
+  position: fixed;
+  font-family: SF Pro Rounded;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  /* identical to box height */
 
   color: #383838;
 }
+main {
+  margin-left: 194px;
+}
 
-button {
+#book-form__search {
   background: #7d3dfc;
   border-radius: 10px;
   font-family: SF Pro Rounded;
@@ -26,10 +43,45 @@ button {
   border-radius: 12px;
   padding: 2px;
   margin: 2px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.book-result {
+  display: inline-flex;
+  align-items: center;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.reading-status {
+  visibility: hidden;
+}
+.reading-status__label {
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+img {
+  height: 50px;
+  width: 50px;
+}
+
+label {
+  cursor: pointer;
+}
+input:checked + label {
+  background: red;
 }

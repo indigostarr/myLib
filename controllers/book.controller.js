@@ -7,13 +7,11 @@ const { response } = require("express");
 
 // homepage
 exports.homepage = (req, res) => {
-  res.sendFile(fileDir + "/index.html");
+  res.render("search.ejs");
 };
 
 // search page
 exports.search = (req, res) => {
-  console.log("title", req.body.title);
-
   const bookSearch = new Search({
     title: req.body.title,
   });
@@ -21,7 +19,9 @@ exports.search = (req, res) => {
   const bookData = displaySearchResultData(bookSearch.title);
   bookData
     .then((response) => {
-      res.render("search.results.ejs", { books: response.data.items });
+      res.render("search.results.ejs", {
+        books: response.data.items,
+      });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -56,11 +56,12 @@ exports.create = (req, res) => {
   const book = new Book({
     bookId: req.body.bookId,
     title: req.body.title,
-    author: req.body.authors,
+    author: req.body.author,
     pages: req.body.pages,
     read: req.body.read,
     thumbnail: req.body.thumbnail,
     description: req.body.description,
+    status: req.body.status,
     review: "",
   });
 
@@ -68,14 +69,14 @@ exports.create = (req, res) => {
   return book
     .save()
     .then((data) => {
-      res.send(data);
+      console.log(data.status);
+      res.redirect("/books/" + data.id);
     })
     .catch((error) => {
       return res.status(404).send({
         message: "issue adding book",
       });
     });
-  res.redirect("/books/:bookId");
 };
 
 // get books from database
@@ -102,7 +103,6 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-
       res.render("collection.book.ejs", { book: data });
     })
     .catch((error) => {
@@ -113,6 +113,22 @@ exports.findOne = (req, res) => {
       }
       return res.status(500).send({
         message: "unable to retrieve " + req.params.title,
+      });
+    });
+};
+
+// find all books by reading status
+exports.findByStatus = (req, res) => {
+  console.log(req.params.status);
+  Book.find({
+    where: req.params.status,
+  })
+    .then((data) => {
+      res.render("collection.ejs", { books: data });
+    })
+    .catch((error) => {
+      return res.status(404).send({
+        message: "issue retrieving books",
       });
     });
 };
@@ -136,6 +152,7 @@ exports.update = (req, res) => {
       read: req.body.read,
       thumbnail: req.body.thumbnail,
       description: req.body.description,
+      status: req.body.status,
       review: req.body.review,
     },
     {
@@ -148,10 +165,8 @@ exports.update = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      res.send(data);
-      // res.status(200);
-      // res.render("collection.book.ejs", { book: data });
-      // return;
+      console.log(data.status);
+      res.redirect("/books/" + data.id);
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -174,7 +189,7 @@ exports.delete = (req, res) => {
           message: "book not found with id " + req.params.noteId,
         });
       }
-      res.send({ message: "book deleted successfully!" });
+      res.redirect("/books");
     })
     .catch((error) => {
       if (error.kind === "ObjectId" || error.name === "NotFound") {
