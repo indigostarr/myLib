@@ -12,7 +12,7 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  // console.log(req.body);
+  console.log("title", req.body.title);
 
   const bookSearch = new Search({
     title: req.body.title,
@@ -21,7 +21,7 @@ exports.search = (req, res) => {
   const bookData = displaySearchResultData(bookSearch.title);
   bookData
     .then((response) => {
-      res.render("search.ejs", { books: response.data.items });
+      res.render("search.results.ejs", { books: response.data.items });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -54,7 +54,7 @@ exports.create = (req, res) => {
 
   // create new book object
   const book = new Book({
-    bookId: req.body.id,
+    bookId: req.body.bookId,
     title: req.body.title,
     author: req.body.authors,
     pages: req.body.pages,
@@ -75,6 +75,7 @@ exports.create = (req, res) => {
         message: "issue adding book",
       });
     });
+  res.redirect("/books/:bookId");
 };
 
 // get books from database
@@ -102,7 +103,7 @@ exports.findOne = (req, res) => {
         });
       }
 
-      res.render("book.ejs", { book: data });
+      res.render("collection.book.ejs", { book: data });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -124,21 +125,18 @@ exports.update = (req, res) => {
       message: "book doesn't exist",
     });
   }
-
-  console.log("updating here");
-  console.log(req.params.bookId);
   // Find book and update
   Book.findByIdAndUpdate(
     req.params.bookId,
     {
-      bookId: req.body.id,
+      bookId: req.body.bookId,
       title: req.body.title,
       author: req.body.author,
       pages: req.body.pages,
       read: req.body.read,
       thumbnail: req.body.thumbnail,
       description: req.body.description,
-      review: "",
+      review: req.body.review,
     },
     {
       new: true,
@@ -151,6 +149,9 @@ exports.update = (req, res) => {
         });
       }
       res.send(data);
+      // res.status(200);
+      // res.render("collection.book.ejs", { book: data });
+      // return;
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {

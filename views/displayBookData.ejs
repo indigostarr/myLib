@@ -1,16 +1,16 @@
 <!-- book.ejs -->
-<% include partials/header.ejs %>
+<%- include("partials/header.ejs") %>
 
 <h1>Personal Library</h1>
 
 <!-- Create instructions -->
 <div id="header"></div>
 <main>
-  <a href="/"><div id="header">Book Search</div></a>
+  <a href="/"><div id="header">🔦 Search</div></a>
 
   <!-- Create a display area to show the new books -->
 
-  <form action="/books" method="POST" id="book-search">
+  <form action="/books" method="POST" id="book-search" class="search-results">
     <div id="<%= book.id %>" name="<%= book.id %>"></div>
     <img
       id="header-image"
@@ -32,6 +32,10 @@
       ><%= book.volumeInfo.pages %><input type="hidden" name="pages"
     /></label>
     <button type="submit" id="book-search__add">Add</button><br />
+    <label
+      ><input type="hidden" name="description" /> <%=
+      book.volumeInfo.description %></label
+    >
   </form>
 </main>
-<% include partials/footer.ejs %>
+<%- include("partials/footer.ejs") %>

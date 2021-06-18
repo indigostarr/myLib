@@ -20,8 +20,8 @@ module.exports = (app) => {
   app.get("/books/:bookId", books.findOne);
 
   // PUT a book by ID
-  app.put("/books/:bookId", books.update);
+  app.post("/books/:bookId", books.update);
 
   // DELETE a book by ID
-  app.delete("/books/:bookId", books.delete);
+  app.post("/books/delete/:bookId", books.delete);
 };

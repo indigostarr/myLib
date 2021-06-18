@@ -1,25 +1,27 @@
 <!-- search.ejs -->
-<% include partials/header.ejs %>
+<%- include("partials/header.ejs") %>
   <body>
-    <h1>Add books</h1>
+    <p> 🔦 Search </p>
     <div id="book-search">
-      Books
+      <form action="/search" method="POST" id="book-search">
+            <input type="text" id="search" name="title" placeholder="book"/>
+            <button type="submit" id="book-form__search">Search by Title</button>
+        </div>
+      </form>
       <ul class="books">
         <% for(var i = 0; i < books.length; i++) {%>
         <li class="books">
           <!-- Output name from the iterated book -->
-          <form action="/books" method="POST" id="book-search">
+          <!-- <form action="/books" method="POST" id="book-search"> -->
           <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
           <a href="/search/<%= books[i].id %>">
             <input type="hidden" name="title" value="<%= books[i].volumeInfo.title %>"> <%= books[i].volumeInfo.title %></label></a
           >
           <label><input type="hidden" name="author" value="<%= books[i].volumeInfo.authors %>"> <%= books[i].volumeInfo.authors %></label>
           <label><input type="hidden" name="pages" value="pages"> <%= books[i].volumeInfo.pages %></label>
-          <button type="submit" id="book-search__add">Add</button><br />
-          <label><input type="hidden"name="description"> <%= books[i].volumeInfo.description %></label>
+          <!-- <button type="submit" id="book-search__add">Add</button><br /> -->
         </li>
         <% } %>
-      </form>
       </ul>
     </div>
-    <% include partials/footer.ejs %>
+    <%- include("partials/footer.ejs") %>
