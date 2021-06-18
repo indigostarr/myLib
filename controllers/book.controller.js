@@ -119,6 +119,7 @@ exports.findOne = (req, res) => {
 
 // find all books by reading status
 exports.findByStatus = (req, res) => {
+  console.log(req.query);
   console.log("find by status", req.params.status);
   Book.find({
     status: req.params.status,
