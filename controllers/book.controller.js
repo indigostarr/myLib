@@ -119,9 +119,9 @@ exports.findOne = (req, res) => {
 
 // find all books by reading status
 exports.findByStatus = (req, res) => {
-  console.log(req.params.status);
+  console.log("find by status", req.params.status);
   Book.find({
-    where: req.params.status,
+    status: req.params.status,
   })
     .then((data) => {
       res.render("collection.ejs", { books: data });
