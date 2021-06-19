@@ -155,15 +155,17 @@ exports.update = (req, res) => {
   Book.findByIdAndUpdate(
     req.params.bookId,
     {
-      bookId: req.body.bookId,
-      title: req.body.title,
-      author: req.body.author,
-      pages: req.body.pages,
-      read: req.body.read,
-      thumbnail: req.body.thumbnail,
-      description: req.body.description,
-      status: req.body.status,
-      review: req.body.review,
+      $set: {
+        // bookId: req.body.bookId,
+        // title: req.body.title,
+        // author: req.body.author,
+        // pages: req.body.pages,
+        // read: req.body.read,
+        // thumbnail: req.body.thumbnail,
+        // description: req.body.description,
+        status: req.body.status,
+        review: req.body.review,
+      },
     },
     {
       new: true,

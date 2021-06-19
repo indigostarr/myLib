@@ -32,6 +32,7 @@ mongoose
   .connect(dbConfig.url, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useFindAndModify: false,
   })
   .then((client) => {
     console.log("Successfully connected to the database");

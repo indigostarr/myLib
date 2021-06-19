@@ -33,7 +33,7 @@
       <!-- container for title and author -->
         <div class="grid-cols-2 self-center ">
           <div class="space-y-2 ml-3  pr-3">
-            <div class="text-base leading-4 font-normal">
+            <div class="text-base leading-4 font-normal space-y-2">
               <a href="/search/<%= books[i].id %>">
                 <%= books[i].title %></a
               >
@@ -69,11 +69,25 @@
                 "
               >
               Pages <%= books[i].pages %>
+              <div
+              class="ml-3 my-3 border-gray-100 p-1"
+            >
+              <div class="uppercase text-xs leading-4 font-medium">
+                
               </div>
-            </div>
+              <div
+                class="
+                  text-center text-sm
+                  leading-4
+                  font-semibold
+                  text-gray-800
+                "
+              >👀 Reading
+              </div>
+            
           </div>
         </div>
-        
+      </div>
       </li>
       <% } %>
     </a>
