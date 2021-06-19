@@ -37,16 +37,14 @@
         <!-- list item -->
         <% for(var i = 0; i < books.length; i++) {%>
 
-          <a href="/search/<%= books[i].id %>"><li class=" p-4 mx-2 bg-gray-50 antialiased grid grid-cols-3 gap-4 align-content: center rounded hover:#F0E7FF
- ">
+          <a href="/search/<%= books[i].id %>"><li class=" p-4 mx-2 bg-gray-50 antialiased grid grid-cols-3 gap-4 align-content: center rounded hover:#F0E7FF">
           <div class=" ml-3 pr-3 grid-cols-1 self-center justify-self-center"> 
           <!-- Output name from the iterated book -->
           <!-- <form action="/books" method="POST" id="book-search"> -->
           <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
           <img
             id="search-image"
-            src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"
-          /><input
+            src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"/><input
             type="hidden"
             name="thumbnail"
             value="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.Thumbnail :  img %>"
@@ -63,25 +61,20 @@
               </div>
           
              
-                      <div class=" space-y-2 ml-3  pr-3 self-center">
+              <div class=" space-y-2 ml-3  pr-3 self-center">
               <div class="text-sm leading-4 font-normal">
                 <span class="text-xs leading-4 font-normal text-gray-500 ">
                   By
                 </span>
                 <%- books[i].volumeInfo.authors %>
               </div>
-              
               </div>
           </div>
 
           <div class=" pr-3 grid-cols-3 self-center">
-            <div>
-              <div
-                class="ml-3 my-3 border-gray-100 p-1"
-              >
-                <div class="uppercase text-xs leading-4 font-medium">
-                  
-                </div>
+            
+              <div class="ml-3 my-3 border-gray-100 p-1">
+                <div class="uppercase text-xs leading-4 font-medium"></div>
                 <div
                   class="
                     text-center text-sm
@@ -93,7 +86,6 @@
                 Pages <%= (!books[i].volumeInfo.pageCount) ? "?" : books[i].volumeInfo.pageCount %>
                 </div>
               </div>
-            </div>
           </div>
           
         </li>
@@ -101,12 +93,5 @@
       </a>
       </ul>
   </div>
-  </div>
-    
-    </div> 
-      
-        </div>
-      </div>
-    </div>
   
-</div>
+    <%- include("partials/footer.ejs") %>
