@@ -4,6 +4,7 @@ const Search = require("../models/search.model.js");
 const displaySearchResultData = require("../app/app.js");
 const displayBookData = require("../app/bookdisplay.js");
 const { response } = require("express");
+const { data } = require("autoprefixer");
 
 // homepage
 exports.homepage = (req, res) => {
@@ -17,16 +18,22 @@ exports.search = (req, res) => {
   });
 
   const bookData = displaySearchResultData(bookSearch.title);
+
   bookData
     .then((response) => {
+      // console.log("ditems", data.items);
+      // if (data.items === undefined) {
+      //   console.log("data", data.items);
+      //   res.render("search.ejs");
+      // } else {
       res.render("search.results.ejs", {
         books: response.data.items,
+        search: req.body.title,
       });
+      // }
     })
     .catch((error) => {
-      return res.status(404).send({
-        message: "no data returned",
-      });
+      res.render("search.ejs");
     });
 };
 
@@ -69,7 +76,6 @@ exports.create = (req, res) => {
   return book
     .save()
     .then((data) => {
-      console.log(data.status);
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {
@@ -81,7 +87,10 @@ exports.create = (req, res) => {
 
 // get books from database
 exports.findAll = (req, res) => {
-  // find single book
+  if (req.query.status) {
+    return findByStatus(req.query.status, res);
+  }
+  // find all books
   Book.find()
     .then((data) => {
       res.render("collection.ejs", { books: data });
@@ -103,6 +112,7 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
+      console.log("bookid", data.id);
       res.render("collection.book.ejs", { book: data });
     })
     .catch((error) => {
@@ -118,9 +128,9 @@ exports.findOne = (req, res) => {
 };
 
 // find all books by reading status
-exports.findByStatus = (req, res) => {
+findByStatus = (status, res) => {
   Book.find({
-    status: req.params.status,
+    status: status,
   })
     .then((data) => {
       console.log(data);
@@ -165,7 +175,7 @@ exports.update = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      console.log(data.status);
+      console.log(data.id);
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {

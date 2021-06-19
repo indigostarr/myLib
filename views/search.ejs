@@ -1,113 +1,30 @@
 <%- include("partials/header.ejs") %>
-
 <div class="relative min-h-screen flex">
-  <!-- sidebar -->
-  <!-- text blue 100 will go all the way down the page -->
-  <!-- this is the parent div so will set padding y  -->
-  <div
-    class="
-      bg-gray-50
-      text-black
-      w-64
-      space-y-6
-      py-7
-      px-2
-      absolute
-      inset-y-0
-      left-0
-      transform
-      -translate-x-full
-      md:relative
-      md:translate-x-0
-      transition
-      duration-200
-      ease-in-out
-    "
-  >
-    <!-- logo -->
-
-    <a
-      href="/books"
-      class="text-black flex-items-center space-x-2 px-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      ><span class="w-8 h-8 text-2x1 font-bold">✨ MyLib</span>
-    </a>
-    <nav>
-      <a
-        href="/"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >🔦 Search</a
-      >
-      <a
-        href="/books/to-read"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >📕 To Read</a
-      >
-      <a
-        href="/books/reading"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >👀 Reading</a
-      >
-      <a
-        href="/books/read"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >📚 Read</a
-      >
-
-      <!-- remove  abosolute and transform and -translate x-full-->
-      <!-- md:relative 
-      md:translate-x-0 these make the sidebar responsive -->
-    </nav>
-  </div>
-  <div class="flex-1 p-10 text-2x1 font-bold">
-    <h1 class="align-middle">🔦 Search</h1>
+<%- include("partials/nav.ejs") %>
+  <div class="flex-1 p-10 text-2x1 font-bold space-y-6 py-7">
+    <div class="text-center">🔦 Search</div>
     <form action="/search" method="POST" id="book-search">
-      <div class="bg-white shadow p-4 mx-2 flex">
+      <div class="bg-white shadow p-4 mx-2 flex hover:shadow-lg">
         <span class="w-auto flex justify-end items-center text-gray-500 p-2">
         </span>
         <input
           class="w-full rounded p-4"
           type="text"
           name="title"
-          placeholder="Try 'Cal Newport'"
+          focus="outline-none"
+          placeholder='Cal Newport'
         />
         <button
           type="submit"
-          class="bg-red-400 hover:bg-red-300 rounded text-white p-2 pl-4 pr-4"
+          class="
+            bg-purple-500
+            hover:bg-purple-700
+            rounded
+            text-white
+            p-2
+            pl-4
+            pr-4
+          "
         >
           <p class="font-semibold text-xs">Search</p>
         </button>
@@ -115,4 +32,5 @@
     </form>
     <!-- <img src="/assets/Brazuca Tree 3.png"> -->
   </div>
+</div>
 </div>

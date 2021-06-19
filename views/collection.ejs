@@ -1,113 +1,90 @@
 <%- include("partials/header.ejs") %>
-
 <div class="relative min-h-screen flex">
-  <!-- sidebar -->
-  <!-- text blue 100 will go all the way down the page -->
-  <!-- this is the parent div so will set padding y  -->
-  <div
-    class="
-      bg-gray-50
-      text-black
-      w-64
-      space-y-6
-      py-7
-      px-2
-      absolute
-      inset-y-0
-      left-0
-      transform
-      -translate-x-full
-      md:relative
-      md:translate-x-0
-      transition
-      duration-200
-      ease-in-out
-    "
-  >
-    <!-- logo -->
-    <a
-      href="/books"
-      class="text-black flex-items-center space-x-2 px-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      ><span class="w-8 h-8 text-2x1 font-bold">✨ MyLib</span>
-    </a>
-    <nav>
-      <a
-        href="/"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >🔦 Search</a
-      >
-      <a
-        href="/books/to-read"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >📕 To Read</a
-      >
-      <a
-        href="/books/reading"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >👀 Reading</a
-      >
-      <a
-        href="/books/read"
-        class="
-          block
-          py-2.5
-          px-4
-          rounded
-          transition
-          duration-200
-          hover:bg-gray-100
-        "
-        >📚 Read</a
-      >
+<%- include("partials/nav.ejs") %>
 
-      <!-- remove  abosolute and transform and -translate x-full-->
-      <!-- md:relative 
-      md:translate-x-0 these make the sidebar responsive -->
-    </nav>
-  </div>
-  <div class="flex-1 p-10 text-2x1 font-bold" id="book-display"> Books
-    <!-- Create a display area to show the new books -->
-  <ul class="books">
-    <% for(var i = 0; i < books.length; i++) {%>
-      <li class="book-result">
+  
+<div class="flex-1 p-10 text-2x1 font-bold">
+  <div class="bg-white shadow p-4 mx-2 flex">
+    <span class="w-auto flex text-center items-center text-gray-500 p-2">
+        Book Collection
+    </span>
+    </div>
+
+   
+
+  <ul class="space-y-4">
+      <!-- list item -->
+      <% for(var i = 0; i < books.length; i++) {%>
+
+        <a href="/books/<%= books[i]._id %>"><li class=" mx-2 bg-gray-50 p-4 antialiased grid grid-cols-3 gap-4 align-content: center rounded border-0">
+        <div class=" ml-3 pr-3 grid-cols-1 self-center justify-self-center"> 
         <!-- Output name from the iterated book -->
-    
-        <div id= <%= books[i]._id %> > <img id="search-image" src="<%= books[i].thumbnail %>" />
-        <a href="/books/<%= books[i]._id %>">
-        <span> <%= books[i].title %></span>:</a>
-        <span> <%= books[i].author %></span>
-        <span> <%= books[i].read %></span>
+        <!-- <form action="/books" method="POST" id="book-search"> -->
+        <div id="<%= books[i]._id %>" name="<%= books[i]._id %>"></div>
+        <img
+          id="search-image"
+          src="<%= books[i].thumbnail %>"
+        /><input
+          type="hidden"
+          name="thumbnail"
+          value="<%= books[i].thumbnail %>"
+        />
+      </div>
+      <!-- container for title and author -->
+        <div class="grid-cols-2 self-center ">
+          <div class="space-y-2 ml-3  pr-3">
+            <div class="text-base leading-4 font-normal">
+              <a href="/search/<%= books[i].id %>">
+                <%= books[i].title %></a
+              >
+            </div>
+            </div>
+        
+           
+                    <div class=" space-y-2 ml-3  pr-3 self-center">
+            <div class="text-sm leading-4 font-normal">
+              <span class="text-xs leading-4 font-normal text-gray-500 ">
+                By
+              </span>
+              <%= books[i].author %>
+            </div>
+            
+            </div>
+        </div>
+
+        <div class=" pr-3 grid-cols-3 self-center">
+          <div>
+            <div
+              class="ml-3 my-3 border-gray-100 p-1"
+            >
+              <div class="uppercase text-xs leading-4 font-medium">
+                
+              </div>
+              <div
+                class="
+                  text-center text-sm
+                  leading-4
+                  font-semibold
+                  text-gray-800
+                "
+              >
+              Pages <%= books[i].pages %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </li>
-    <% } %>
-  </ul>
+      <% } %>
+    </a>
+    </ul>
+</div>
+</div>
+  
+  </div> 
+    
+      </div>
+    </div>
   </div>
-    <!-- <img src="/assets/Brazuca Tree 3.png"> -->
-  </div>
+
 </div>
