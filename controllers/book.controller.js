@@ -13,24 +13,21 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  const bookSearch = new Search({
-    title: req.body.title,
-  });
-
-  const bookData = displaySearchResultData(bookSearch.title);
+  const bookData = displaySearchResultData(req.body.title);
 
   bookData
     .then((response) => {
-      // console.log("ditems", data.items);
-      // if (data.items === undefined) {
-      //   console.log("data", data.items);
-      //   res.render("search.ejs");
-      // } else {
-      res.render("search.results.ejs", {
-        books: response.data.items,
-        search: req.body.title,
-      });
-      // }
+      if (response.data.items === undefined) {
+        res.render("search.ejs", {
+          searchResultUndefined: "Book not found!",
+        });
+      } else {
+        res.render("search.results.ejs", {
+          books: response.data.items,
+          img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+          search: req.body.title, 
+        });
+      }
     })
     .catch((error) => {
       res.render("search.ejs");
@@ -39,9 +36,13 @@ exports.search = (req, res) => {
 
 exports.viewSearchedBook = (req, res) => {
   const bookData = displayBookData(req.params.bookId);
+  
   bookData
     .then((response) => {
-      res.render("displayBookData.ejs", { book: response.data });
+      res.render("displayBookData.ejs", { 
+        book: response.data.volumeInfo,
+        img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+      });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -72,6 +73,7 @@ exports.create = (req, res) => {
     review: "",
   });
 
+  console.log(book.author)
   // save book
   return book
     .save()
@@ -112,8 +114,8 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      console.log("bookid", data.id);
-      res.render("collection.book.ejs", { book: data });
+      res.render("collection.book.ejs", { book: data, 
+      });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -134,7 +136,7 @@ findByStatus = (status, res) => {
   })
     .then((data) => {
       console.log(data);
-      res.render("collection.ejs", { books: data });
+      res.render("collection.ejs", { books: data,});
     })
     .catch((error) => {
       return res.status(404).send({

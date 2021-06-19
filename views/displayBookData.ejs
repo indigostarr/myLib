@@ -1,42 +1,67 @@
 <%- include("partials/header.ejs") %>
 <div class="relative min-h-screen flex">
-<%- include("partials/nav.ejs") %>
+  <%- include("partials/nav.ejs") %>
 
   <div class="flex-1 p-10 text-2x1 font-bold">
-  <!-- Create a display area to show the new books -->
+    <!-- Create a display area to show the new books -->
 
-  <form action="/books" method="POST" id="book-search" class="search-results">
-    <div id="<%= book.id %>" name="<%= book.id %>"></div>
-    <img
-      id="book-image"
-      src="<%= book.volumeInfo.imageLinks.thumbnail %>"
-    /><input
-      type="hidden"
-      name="thumbnail"
-      value="<%= book.volumeInfo.imageLinks.thumbnail %>"
-    />
-    <label
-      ><input type="hidden" name="title" value="<%= book.volumeInfo.title %>" />
-      <%= book.volumeInfo.title %></label
-    >
-    <label
-      ><input
-        type="hidden"
-        name="author"
-        value="<%= book.volumeInfo.authors %>"
-      />
-      <%= book.volumeInfo.authors %></label
-    >
-    <label
-      ><%= book.volumeInfo.pageCount %><input
-        type="hidden"
-        name="pages"
-        value="<%= book.volumeInfo.pageCount %>"
-    /></label>
-    <button type="submit" id="book-search__add">Add</button><br />
-    <label
-      ><input type="hidden" name="description" /> <%=
-      book.volumeInfo.description %></label
-    >
-  </form>
-</main>
+    <form action="/books" method="POST" id="book-search" class="search-results">
+      <div id="<%= book.id %>" name="<%= book.id %>"></div>
+      <img
+            id="search-image"
+            src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>"
+          /><input
+            type="hidden"
+            name="thumbnail"
+            value="<%= (book.imageLinks) ? book.imageLinks.thumbnail :  img %>"
+          />
+      <label
+        ><input
+          type="hidden"
+          name="title"
+          value="<%= book.title %>"
+        />
+        <%= book.title %></label
+      >
+      <label
+        ><input
+          type="hidden"
+          name="authors"
+          value="<%= book.authors %>"
+        />
+        <%= book.authors %></label
+      >
+      <label
+        ><%= book.pageCount %><input
+          type="hidden"
+          name="pages"
+          value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
+      /></label>
+      <input type="radio" onchange='this.form.submit();' name="status"
+      class="reading-status" id="to-read" value="to-read" <% if (book.status ===
+      "to-read") { %>checked <% }%>>
+      <label for="to-read" class="reading-status__label">📕 To Read</label>
+      <input type="radio" onchange='this.form.submit();' name="status"
+      class="reading-status" id="read" value="read" <% if (book.status ===
+      "read") { %>checked <% }%>><label for="read" class="reading-status__label"
+        >📚 Read</label
+      >
+      <input type="radio" onchange='this.form.submit();' name="status"
+      class="reading-status" id="reading" value="reading" <% if (book.status ===
+      "reading") { %>checked <% }%>><label
+        for="reading"
+        class="reading-status__label"
+        >👀 Reading</label
+      ><br />
+      <label class="line-clamp-10" 
+        ><input
+          type="hidden"
+          name="description"
+          
+          value="<%= book.description %>"
+        />
+        <%- book.description %></label
+      >
+    </form>
+  </div>
+</div>

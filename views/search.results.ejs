@@ -7,7 +7,7 @@
     <div class="text-center">🔦 Search</div>
     <form action="/search" method="POST" id="book-search">
       <div class="bg-white shadow p-4 mx-2 flex hover:shadow-lg">
-        <span class="w-auto flex justify-end items-center text-gray-700 p-2">
+        <span class="w-auto flex justify-end items-center text-gray-500 p-2">
         </span>
         <input
           class="w-full rounded p-4"
@@ -36,7 +36,6 @@
 
       <ul class="space-y-4">
         <!-- list item -->
-
         <% for(var i = 0; i < books.length; i++) {%>
 
           <a href="/search/<%= books[i].id %>"><li class=" p-4 mx-2 bg-gray-50 antialiased grid grid-cols-3 gap-4 align-content: center rounded hover:#F0E7FF
@@ -47,14 +46,14 @@
           <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
           <img
             id="search-image"
-            src="<%= books[i].volumeInfo.imageLinks.smallThumbnail %>"
+            src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"
           /><input
             type="hidden"
             name="thumbnail"
-            value="<%= books[i].volumeInfo.imageLinks.thumbnail %>"
+            value="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.Thumbnail :  img %>"
           />
         </div>
-        <!-- container for title and author -->
+        <!-- container for title and authors -->
           <div class="grid-cols-2 self-center ">
             <div class="space-y-2 ml-3  pr-3">
               <div class="text-base leading-4 font-normal">
@@ -70,7 +69,7 @@
                 <span class="text-xs leading-4 font-normal text-gray-500 ">
                   By
                 </span>
-                <%= books[i].volumeInfo.authors %>
+                <%- books[i].volumeInfo.authors %>
               </div>
               
               </div>
@@ -92,7 +91,7 @@
                     text-gray-800
                   "
                 >
-                Pages <%= books[i].volumeInfo.pageCount %>
+                Pages <%= (!books[i].volumeInfo.pageCount) ? "?" : books[i].volumeInfo.pageCount %>
                 </div>
               </div>
             </div>

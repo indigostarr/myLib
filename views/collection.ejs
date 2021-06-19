@@ -4,8 +4,8 @@
 
   
 <div class="flex-1 p-10 text-2x1 font-bold">
-  <div class="bg-white shadow p-4 mx-2 flex">
-    <span class="w-auto flex text-center items-center text-gray-500 p-2">
+  <div class="bg-white shadow p-4 mx-2 text-center items-center">
+    <span class="self-center text-gray-500 p-2">
         Book Collection
     </span>
     </div>
@@ -16,7 +16,8 @@
       <!-- list item -->
       <% for(var i = 0; i < books.length; i++) {%>
 
-        <a href="/books/<%= books[i]._id %>"><li class=" mx-2 bg-gray-50 p-4 antialiased grid grid-cols-3 gap-4 align-content: center rounded border-0">
+        <a href="/books/<%= books[i]._id %>">
+          <li class=" mx-2 bg-gray-50 p-4 antialiased grid grid-cols-3 gap-4 align-content: center rounded border-0">
         <div class=" ml-3 pr-3 grid-cols-1 self-center justify-self-center"> 
         <!-- Output name from the iterated book -->
         <!-- <form action="/books" method="POST" id="book-search"> -->
@@ -30,11 +31,11 @@
           value="<%= books[i].thumbnail %>"
         />
       </div>
-      <!-- container for title and author -->
+      <!-- container for title and authors -->
         <div class="grid-cols-2 self-center ">
           <div class="space-y-2 ml-3  pr-3">
             <div class="text-base leading-4 font-normal space-y-2">
-              <a href="/search/<%= books[i].id %>">
+              <a href="/books/<%= books[i].id %>">
                 <%= books[i].title %></a
               >
             </div>
@@ -46,7 +47,7 @@
               <span class="text-xs leading-4 font-normal text-gray-500 ">
                 By
               </span>
-              <%= books[i].author %>
+              <%= books[i].authors %>
             </div>
             
             </div>
