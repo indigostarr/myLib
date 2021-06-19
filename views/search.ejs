@@ -25,6 +25,7 @@
     "
   >
     <!-- logo -->
+
     <a
       href="/books"
       class="text-black flex-items-center space-x-2 px-4"
@@ -90,18 +91,28 @@
       <!-- remove  abosolute and transform and -translate x-full-->
       <!-- md:relative 
       md:translate-x-0 these make the sidebar responsive -->
-    
     </nav>
   </div>
   <div class="flex-1 p-10 text-2x1 font-bold">
-    <p> 🔦 Search </p>
-    <div id="book-search">
-        <form action="/search" method="POST" id="book-search" >
-              <input type="text" id="search" name="title" placeholder="book" autocomplete="on" autocapitalize="sentences"/>
-              <button type="submit" id="book-form__search">Search by Title</button>
-          </div>
-         </div>
-         
-         <!-- <img src="/assets/Brazuca Tree 3.png"> -->
+    <h1 class="align-middle">🔦 Search</h1>
+    <form action="/search" method="POST" id="book-search">
+      <div class="bg-white shadow p-4 mx-2 flex">
+        <span class="w-auto flex justify-end items-center text-gray-500 p-2">
+        </span>
+        <input
+          class="w-full rounded p-4"
+          type="text"
+          name="title"
+          placeholder="Try 'Cal Newport'"
+        />
+        <button
+          type="submit"
+          class="bg-red-400 hover:bg-red-300 rounded text-white p-2 pl-4 pr-4"
+        >
+          <p class="font-semibold text-xs">Search</p>
+        </button>
+      </div>
+    </form>
+    <!-- <img src="/assets/Brazuca Tree 3.png"> -->
+  </div>
 </div>
-

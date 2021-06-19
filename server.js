@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 // add view engine
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+const plugin = require("tailwindcss/plugin");
 
 // Require book routes and models
 require("./routes/book.routes.js")(app);
