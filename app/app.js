@@ -31,4 +31,5 @@ const displaySearchResultData = async (title) => {
   }
 };
 
+
 module.exports = ("displaySearchResultData", displaySearchResultData);
