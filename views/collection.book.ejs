@@ -1,5 +1,4 @@
-<%- include("partials/header.ejs") %>
-<div class="relative min-h-screen flex">
+
   <%- include("partials/nav.ejs") %>
 
   <div class="flex-1 p-10 text-2x1 font-bold">
@@ -29,21 +28,21 @@
             <span> <%= book.title %></span>
             <span>By <%= book.authors %></span>
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="to-read" value="to-read" <% if
-            (book.status === "to-read") { %>checked <% }%>>
+            class="reading-status" id="to-read" value="📕 To Read" <% if
+            (book.status === "📕 To Read") { %>checked <% }%>>
             <label for="to-read" class="reading-status__label"
               >📕 To Read</label
             >
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="read" value="read" <% if (book.status ===
-            "read") { %>checked <% }%>><label
+            class="reading-status" id="read" value="📚 Read" <% if (book.status ===
+            "📚 Read") { %>checked <% }%>><label
               for="read"
               class="reading-status__label"
               >📚 Read</label
             >
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="reading" value="reading" <% if
-            (book.status === "reading") { %>checked <% }%>><label
+            class="reading-status" id="reading" value="👀 Reading" <% if
+            (book.status === "👀 Reading") { %>checked <% }%>><label
               for="reading"
               class="reading-status__label"
               >👀 Reading</label

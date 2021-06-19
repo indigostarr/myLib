@@ -135,7 +135,6 @@ findByStatus = (status, res) => {
     status: status,
   })
     .then((data) => {
-      console.log(data);
       res.render("collection.ejs", { books: data,});
     })
     .catch((error) => {
@@ -158,13 +157,6 @@ exports.update = (req, res) => {
     req.params.bookId,
     {
       $set: {
-        // bookId: req.body.bookId,
-        // title: req.body.title,
-        // author: req.body.author,
-        // pages: req.body.pages,
-        // read: req.body.read,
-        // thumbnail: req.body.thumbnail,
-        // description: req.body.description,
         status: req.body.status,
         review: req.body.review,
       },
@@ -179,7 +171,7 @@ exports.update = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      console.log(data.id);
+
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {
