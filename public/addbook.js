@@ -1,20 +1,21 @@
 const mobileBtn = document.querySelector(".mobile-menu-button");
 const sidebar = document.querySelector(".sidebar");
 
-mobileBtn.addEventListener("click", () => {
+mobileBtn.addEventListener("click", (e) => {
+  console.log(e.target);
   sidebar.classList.toggle("-translate-x-full");
 });
 
 // Status change
-var toReadButton = document.getElementById("toRead");
-var readingButton = document.getElementById("reading");
-var readButton = document.getElementById("read");
-var buttons = [toReadButton, readingButton, readButton];
+const toReadButton = document.getElementById("toRead");
+const readingButton = document.getElementById("reading");
+const readButton = document.getElementById("read");
+const buttons = [toReadButton, readingButton, readButton];
 
 toReadButton.addEventListener("click", function (event) {
   if (!toReadButton.classList.contains("bg-blue-50")) {
     toggleStatusStyle(toReadButton);
-    updateStatus("to-read");
+    updateStatus("toRead");
   }
 });
 
@@ -53,10 +54,11 @@ function updateStatus(status) {
     pages: document.getElementById("pages").value,
     description: document.getElementById("description").value,
   };
-  fetch("/books", {
-    method: "POST",
+  console.log(data);
+  fetch(`/books/${data.bookId}`, {
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: data,
   })
     .then((res) => {
       console.log("Request complete! response:", res);

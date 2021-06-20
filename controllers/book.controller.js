@@ -1,5 +1,4 @@
 const Book = require("../models/book.model.js");
-const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
 const {
   displayBookData,
@@ -159,20 +158,21 @@ exports.update = (req, res) => {
       message: "book doesn't exist",
     });
   }
+  console.log("working", req.body);
   // Find book and update
   Book.findByIdAndUpdate(
+    console.log(req.params.bookId),
     req.params.bookId,
     {
       $set: {
         status: req.body.status,
-        review: req.body.review,
       },
     },
     {
       new: true,
     }
   )
-    .then((data) => {
+    .then(({ ...data }) => {
       if (!data) {
         return res.status(404).send({
           message: "unable to find " + req.params.title,

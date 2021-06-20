@@ -19,7 +19,7 @@ const plugin = require("tailwindcss/plugin");
 // Require book routes and models
 require("./routes/book.routes.js")(app);
 require("./models/book.model");
-require("./app/app.js");
+// require("./js/addbook");
 
 // Configuring the database
 const dbConfig = require("./config/database.config.js");

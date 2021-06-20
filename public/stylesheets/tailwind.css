@@ -22369,7 +22369,7 @@ video {
 }
 
 .font-rounded {
-  font-family: SF Pro Rounded, san-serif;
+  font-family: ui-rounded, SF Pro Rounded, san-serif;
 }
 
 .text-xs {
@@ -32283,7 +32283,10 @@ video {
 }
 
 .div {
-  font-family: SF Pro Rounded, san-serif;
+  font-family: ui-rounded, SF Pro Rounded, san-serif;
+}
+
+.active {
 }
 
 @media (min-width: 640px) {
@@ -53998,7 +54001,7 @@ video {
   }
 
   .sm\:font-rounded {
-    font-family: SF Pro Rounded, san-serif;
+    font-family: ui-rounded, SF Pro Rounded, san-serif;
   }
 
   .sm\:text-xs {
@@ -85211,7 +85214,7 @@ video {
   }
 
   .md\:font-rounded {
-    font-family: SF Pro Rounded, san-serif;
+    font-family: ui-rounded, SF Pro Rounded, san-serif;
   }
 
   .md\:text-xs {
@@ -116424,7 +116427,7 @@ video {
   }
 
   .lg\:font-rounded {
-    font-family: SF Pro Rounded, san-serif;
+    font-family: ui-rounded, SF Pro Rounded, san-serif;
   }
 
   .lg\:text-xs {
@@ -147637,7 +147640,7 @@ video {
   }
 
   .xl\:font-rounded {
-    font-family: SF Pro Rounded, san-serif;
+    font-family: ui-rounded, SF Pro Rounded, san-serif;
   }
 
   .xl\:text-xs {
@@ -178850,7 +178853,7 @@ video {
   }
 
   .\32xl\:font-rounded {
-    font-family: SF Pro Rounded, san-serif;
+    font-family: ui-rounded, SF Pro Rounded, san-serif;
   }
 
   .\32xl\:text-xs {
