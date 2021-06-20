@@ -42,6 +42,6 @@ mongoose
   });
 
 // create a server the browser can listen to
-app.listen(2080, function () {
+app.listen(process.env.PORT, function () {
   console.log("Listening to 2080");
 });
