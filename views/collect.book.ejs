@@ -33,20 +33,20 @@
             <span> <%= book.title %></span>
             <span>By <%= book.authors %></span>
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="to-read" value="📕 To Read" <% if
+            class="reading-status" id="to-read" value="toRead" <% if
             (book.status === "📕 To Read") { %>checked <% }%>>
             <label for="to-read" class="reading-status__label"
               >📕 To Read</label
             >
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="read" value="📚 Read" <% if (book.status
+            class="reading-status" id="read" value="read" <% if (book.status
             === "📚 Read") { %>checked <% }%>><label
               for="read"
               class="reading-status__label"
               >📚 Read</label
             >
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="reading" value="👀 Reading" <% if
+            class="reading-status" id="reading" value="reading" <% if
             (book.status === "👀 Reading") { %>checked <% }%>><label
               for="reading"
               class="reading-status__label"
@@ -84,3 +84,71 @@
 <%- include("partials/footer.ejs") %>
 
 
+<!-- <%
+              if
+              (<%= books[i].status %>
+              ===
+              "toRead")
+              { %>📕 To Read <%
+              }%> else if
+              ( <%= books[i].status %>
+              ===
+              "read")
+              { %>📚 Read <% } %>
+              else 
+              { %> 👀 Reading <% }%> -->
+
+
+
+              <!-- <% { %> 
+                <% if(books[i].status === 'toRead'){ %>
+                  📕 To Read
+              <% } else if (books[i].status === 'read'){ %>
+                📚 Read
+              <% } %> else { %>
+                👀 Reading
+              <% } %>
+              <% } %> -->
+
+
+
+              <%#
+              if
+              ( books[i].status
+              ===
+              "toRead")
+              { %> 📕 To Read 
+                <% } %>
+              else if
+              ( books[i].status 
+              ===
+              "read")
+              { %> 📚 Read <% } %>
+                else 
+              { % >  👀 Reading <% } %>
+              
+
+              <% if
+              ( books[i].status
+              ===
+              "toRead") { %>
+                📕 To Read 
+                   <% if
+                   ( books[i].status 
+                   ===
+                   "read") { %>
+                    📚 Read 
+                   <% } else { %>
+                    👀 Reading
+                   <% } %>
+               </a>
+          <%}%>
+
+
+
+          <% switch (books[i].status) {
+            case 'read': 📚 Read %>
+           <% break; %>
+            case 'reading': 👀 Reading %>
+            <% break; %>
+            case 'toRead': 📕 To Read }%>

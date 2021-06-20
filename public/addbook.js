@@ -1,3 +1,5 @@
+// const { put } = require("request");
+
 const mobileBtn = document.querySelector(".mobile-menu-button");
 const sidebar = document.querySelector(".sidebar");
 
@@ -45,20 +47,23 @@ function toggleStatusStyle(element) {
 }
 
 function updateStatus(status) {
+  const bookId = document.getElementById("bookId").value;
+  const route = bookId ? `/books/${bookId}` : "/books";
+
   let data = {
     status: status,
     title: document.getElementById("title").value,
-    bookId: document.getElementById("bookId").value,
+    bookId: bookId,
     thumbnail: document.getElementById("search-image").src,
-    author: document.getElementById("authors").value,
+    authors: document.getElementById("authors").value,
     pages: document.getElementById("pages").value,
     description: document.getElementById("description").value,
   };
-  console.log(data);
-  fetch(`/books/${data.bookId}`, {
-    method: "PUT",
+
+  fetch(route, {
+    method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: data,
+    body: JSON.stringify(data),
   })
     .then((res) => {
       console.log("Request complete! response:", res);

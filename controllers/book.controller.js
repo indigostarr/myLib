@@ -61,18 +61,18 @@ exports.create = (req, res) => {
     });
   }
 
-  if (!req.body.title || !req.body.author || !req.body.pages) {
-    console.log(req.body);
+  if (!req.body.title || !req.body.authors || !req.body.pages) {
     return res.status(400).send({
       message: "Missing parameter",
     });
   }
 
+  console.log(req.body.title);
   // create new book object
   const book = new Book({
     bookId: req.body.bookId,
     title: req.body.title,
-    author: req.body.author,
+    authors: req.body.authors,
     pages: req.body.pages,
     read: req.body.read,
     thumbnail: req.body.thumbnail,
@@ -85,6 +85,7 @@ exports.create = (req, res) => {
   return book
     .save()
     .then((data) => {
+      console.log("saved");
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {
@@ -158,10 +159,9 @@ exports.update = (req, res) => {
       message: "book doesn't exist",
     });
   }
-  console.log("working", req.body);
+
   // Find book and update
   Book.findByIdAndUpdate(
-    console.log(req.params.bookId),
     req.params.bookId,
     {
       $set: {
@@ -170,15 +170,15 @@ exports.update = (req, res) => {
     },
     {
       new: true,
+      useFindAndModify: false,
     }
   )
-    .then(({ ...data }) => {
+    .then((data) => {
       if (!data) {
         return res.status(404).send({
           message: "unable to find " + req.params.title,
         });
       }
-
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {

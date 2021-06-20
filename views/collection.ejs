@@ -15,7 +15,7 @@
 
   <ul class="space-y-4">
       <!-- list item -->
-      <% for(var i = 0; i < books.length; i++) {%>
+      <% for(var i = 0; i < books.length; i++) { %>
 
         <a href="/books/<%= books[i]._id %>">
           <li class=" mx-2 bg-gray-50 p-4 antialiased grid grid-cols-3 gap-4 align-content: center rounded border-0">
@@ -84,9 +84,19 @@
                   font-semibold
                   text-gray-800
                 "
-              ><%= books[i].status %>
+              >
+                   <% if ( books[i].status
+                   ===
+                   "toRead") { %>
+                    📕 To Read 
+                    <% } else if ( books[i].status 
+                    ===
+                    "read") { %>
+                      📚 Read
+                    <% } else { %>
+                      👀 Reading
+                      <% }%>
               </div>
-            
           </div>
         </div>
       </div>

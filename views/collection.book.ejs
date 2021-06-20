@@ -152,6 +152,7 @@
           value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
       /></label>
       <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
+      <br />
       <a href="/books/delete/<%= book.id %>"
         >Delete this book from your collection</a
       >
