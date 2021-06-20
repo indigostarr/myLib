@@ -1,61 +1,40 @@
-<%- include("partials/header.ejs") %>
-<div class="relative min-h-screen md:flex">
-  <%- include("partials/nav.ejs") %>
+<%- include("partials/nav.ejs") %>
+<%- include("partials/scripts.ejs") %>
 
-  <div class="flex-1 p-10 text-2x1 font-bold">
-    <!-- Create a display area to show the new books -->
+<div class="grid grid-cols-4 gap-12 w-full m-10 font-rounded h-96">
+  <div id="content" class="col-span-4">
+    <!-- Hero Image -->
+    <div id="hero" class="flex flex-col bg-gray-50 rounded-xl p-6 items-center border-gray-200 border-2">
+      <img id="search-image" class="object-scale-down"
+        src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>" />
+      <label class="mt-3 text-2xl font-bold"><input id="title" type="hidden" name="title" value="<%= book.title %>" />
+        <%= book.title %></label>
+      <label class=""><input id="authors" type="hidden" name="authors" value="<%= book.authors %>" />by
+        <%= book.authors %></label>
 
-    <form action="/books" method="POST" id="book-search" class="search-results">
-      <div id="<%= book.id %>" name="<%= book.id %>"></div>
-      <img
-        id="search-image"
-        src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>"
-      /><input
-        type="hidden"
-        name="thumbnail"
-        value="<%= (book.imageLinks) ? book.imageLinks.thumbnail :  img %>"
-      />
-      <label
-        ><input type="hidden" name="title" value="<%= book.title %>" /> <%=
-        book.title %></label
-      >
-      <label
-        ><input type="hidden" name="authors" value="<%= book.authors %>" /> <%=
-        book.authors %></label
-      >
-      <label
-        ><%= book.pageCount %><input
-          type="hidden"
-          name="pages"
-          value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
-      /></label>
-      <input type="radio" onchange='this.form.submit();' name="status"
-      class="reading-status" id="to-read" value="📕 To Read" <% if (book.status
-      === "📕 To Read") { %>checked <% }%>>
-      <label for="to-read" class="reading-status__label">📕 To Read</label>
-      <input type="radio" onchange='this.form.submit();' name="status"
-      class="reading-status" id="read" value="📚 Read" <% if (book.status ===
-      "📚 Read") { %>checked <% }%>><label
-        for="read"
-        class="reading-status__label"
-        >📚 Read</label
-      >
-      <input type="radio" onchange='this.form.submit();' name="status"
-      class="reading-status" id="reading" value="👀 Reading" <% if (book.status
-      === "👀 Reading") { %>checked <% }%>><label
-        for="reading"
-        class="reading-status__label"
-        >👀 Reading</label
-      ><br />
-      <label class="line-clamp-10"
-        ><input
-          type="hidden"
-          name="description"
-          value="<%= book.description %>"
-        />
-        <%- book.description %></label
-      >
-    </form>
+      <div class="space-x-4 mt-6">
+        <button id="toRead"
+          class="px-5 py-3 shadow-lg rounded-xl font-semibold  text-gray-900 bg-white focus:outline-none hover:-translate-y-0.5 transform transition w-32">📕
+          To Read</button>
+        <button id="reading"
+          class="px-5 py-3 shadow-lg rounded-xl font-semibold text-gray-900 bg-white focus:outline-none hover:-translate-y-0.5 transform transition w-32">👀
+          Reading</button>
+        <button id="read"
+          class="px-5 py-3 shadow-lg rounded-xl font-semibold text-gray-900 bg-white focus:outline-none hover:-translate-y-0.5 transform transition w-32">📚
+          Read</button>
+      </div>
+    </div>
   </div>
-  <%- include("partials/footer.ejs") %>
+  <!-- Details -->
+  <div class="sm:col-span-2 col-span-4 place-self-start">
+    <h2 class="text-xl font-bold mb-6">Description</h2>
+    <input id="description" type="hidden" name="description" value="<%= book.description %>" />
+    <%- book.description %>
+  </div>
+  <div class="sm:col-span-2 col-span-4 place-self-start sm:col-start-3">
+    <h2 class="text-xl font-bold mb-6">Info</h2>
+    <label>Pages: <%= book.pageCount %><input id="pages" type="hidden" name="pages"
+        value="<%= (!book.pageCount) ? '?' : book.pageCount %>" /></label>
+    <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>">
+  </div>
 </div>

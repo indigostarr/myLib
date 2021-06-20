@@ -1,8 +1,10 @@
 const Book = require("../models/book.model.js");
 const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
-// const displaySearchResultData = require("../app/app.js");
-const googleBookAPI = require("../app/bookdisplay.js");
+const {
+  displayBookData,
+  displaySearchResultData,
+} = require("../app/googleAPI.js");
 const { response } = require("express");
 const { data } = require("autoprefixer");
 
@@ -13,7 +15,7 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  const bookData = googleBookAPI.displaySearchResultData(req.body.title);
+  const bookData = displaySearchResultData(req.body.title);
 
   bookData
     .then((response) => {
@@ -35,11 +37,10 @@ exports.search = (req, res) => {
 };
 
 exports.viewSearchedBook = (req, res) => {
-  const bookData = googleBookAPI.getBookData(req.params.bookId);
+  const bookData = displayBookData(req.params.bookId);
 
   bookData
     .then((response) => {
-      console.log(response.data.volumeInfo);
       res.render("displayBookData.ejs", {
         book: response.data.volumeInfo,
         img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
@@ -61,11 +62,18 @@ exports.create = (req, res) => {
     });
   }
 
+  if (!req.body.title || !req.body.author || !req.body.pages) {
+    console.log(req.body);
+    return res.status(400).send({
+      message: "Missing parameter",
+    });
+  }
+
   // create new book object
   const book = new Book({
     bookId: req.body.bookId,
     title: req.body.title,
-    authors: req.body.authors,
+    author: req.body.author,
     pages: req.body.pages,
     read: req.body.read,
     thumbnail: req.body.thumbnail,
@@ -74,7 +82,6 @@ exports.create = (req, res) => {
     review: "",
   });
 
-  console.log(book.authors);
   // save book
   return book
     .save()

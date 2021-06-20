@@ -4,14 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'rounded': ['SF Pro Rounded', 'san-serif'],
-      }
+        rounded: ["ui-rounded", "SF Pro Rounded", "san-serif"],
+      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-  
-    require("@tailwindcss/line-clamp")],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
