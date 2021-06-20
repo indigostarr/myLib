@@ -16,9 +16,6 @@ module.exports = (app) => {
   // GET all book
   app.get("/books", books.findAll);
 
-  // GET books by status
-  app.get("/books/:status", books.findByStatus);
-
   // GET a book by ID
   app.get("/books/:bookId", books.findOne);
 

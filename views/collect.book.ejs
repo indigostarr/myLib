@@ -1,0 +1,154 @@
+
+<!-- original -->
+<%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
+<%- include("partials/nav.ejs") %>
+
+  <div class="flex-1 p-10 text-2x1 font-bold">
+    <!-- Create a display area to show the new books -->
+    <div class="space-y-6 py-7">
+      <form action="/books/<%= book.id %>" method="POST" id="book-review">
+        <input name="_method" type="hidden" value="PUT" />
+        <div
+          class="
+            grid grid-cols-2 grid-rows-2
+            h-full
+            max-w-lg
+            mx-auto
+            rounded-lg
+          "
+        >
+          <!-- <div class="p-4 mx-2 text-center">  -->
+          <div
+            class="col-span-2 row-span-1 align-middle text-center bg-gray-100"
+          >
+            <div id="<%= book.id %>" name="id" value="<%= book.id %>"></div>
+            <img
+              id="header-image"
+              class="rounded-sm rounded-b-none text-center"
+              src="<%= book.thumbnail %>"
+              alt="thumbnail"
+            />
+
+            <span> <%= book.title %></span>
+            <span>By <%= book.authors %></span>
+            <input type="radio" onchange='this.form.submit();' name="status"
+            class="reading-status" id="to-read" value="toRead" <% if
+            (book.status === "📕 To Read") { %>checked <% }%>>
+            <label for="to-read" class="reading-status__label"
+              >📕 To Read</label
+            >
+            <input type="radio" onchange='this.form.submit();' name="status"
+            class="reading-status" id="read" value="read" <% if (book.status
+            === "📚 Read") { %>checked <% }%>><label
+              for="read"
+              class="reading-status__label"
+              >📚 Read</label
+            >
+            <input type="radio" onchange='this.form.submit();' name="status"
+            class="reading-status" id="reading" value="reading" <% if
+            (book.status === "👀 Reading") { %>checked <% }%>><label
+              for="reading"
+              class="reading-status__label"
+              >👀 Reading</label
+            >
+          </div>
+
+          <!-- description div -->
+          <div class="col-span-1 row-span-1 text-sm">
+            <span class="8 line-clamp-10"><%- book.description %> </span>
+          </div>
+
+          <!-- book info div -->
+          <div class="col-span-1 row-span-1">
+            <span>Pages</span>
+            <span> <%= book.pages %> </span>
+
+            <!-- <input
+              type="text"
+              name="review"
+              id="review-textarea"
+              style="size: 2000; width: 80%; height: 150px"
+              value="<%= book.review %>"
+            /> -->
+            <a href="/books/delete/<%= book.id %>"
+              >Delete this book from your collection</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<%- include("partials/footer.ejs") %>
+
+
+<!-- <%
+              if
+              (<%= books[i].status %>
+              ===
+              "toRead")
+              { %>📕 To Read <%
+              }%> else if
+              ( <%= books[i].status %>
+              ===
+              "read")
+              { %>📚 Read <% } %>
+              else 
+              { %> 👀 Reading <% }%> -->
+
+
+
+              <!-- <% { %> 
+                <% if(books[i].status === 'toRead'){ %>
+                  📕 To Read
+              <% } else if (books[i].status === 'read'){ %>
+                📚 Read
+              <% } %> else { %>
+                👀 Reading
+              <% } %>
+              <% } %> -->
+
+
+
+              <%#
+              if
+              ( books[i].status
+              ===
+              "toRead")
+              { %> 📕 To Read 
+                <% } %>
+              else if
+              ( books[i].status 
+              ===
+              "read")
+              { %> 📚 Read <% } %>
+                else 
+              { % >  👀 Reading <% } %>
+              
+
+              <% if
+              ( books[i].status
+              ===
+              "toRead") { %>
+                📕 To Read 
+                   <% if
+                   ( books[i].status 
+                   ===
+                   "read") { %>
+                    📚 Read 
+                   <% } else { %>
+                    👀 Reading
+                   <% } %>
+               </a>
+          <%}%>
+
+
+
+          <% switch (books[i].status) {
+            case 'read': 📚 Read %>
+           <% break; %>
+            case 'reading': 👀 Reading %>
+            <% break; %>
+            case 'toRead': 📕 To Read }%>

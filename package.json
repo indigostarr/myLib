@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js npm watch"
+    "dev": "nodemon server.js npm watch",
+    "start": "npm run build:css",
+    "build:css": "npx tailwindcss -i ./public/stylesheets/style.css -o ./public/stylesheets/tailwind.css"
   },
   "keywords": [
     "Express",
@@ -17,6 +19,7 @@
   "author": "Indigo Starr",
   "license": "ISC",
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.2.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
@@ -29,6 +32,7 @@
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
+    "stylelint-config-recommended": "^5.0.0",
     "tailwindcss": "^2.2.2"
   }
 }

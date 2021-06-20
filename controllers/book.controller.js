@@ -1,9 +1,11 @@
 const Book = require("../models/book.model.js");
-const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
-const displaySearchResultData = require("../app/app.js");
-const displayBookData = require("../app/bookdisplay.js");
+const {
+  displayBookData,
+  displaySearchResultData,
+} = require("../app/googleAPI.js");
 const { response } = require("express");
+const { data } = require("autoprefixer");
 
 // homepage
 exports.homepage = (req, res) => {
@@ -12,29 +14,35 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  const bookSearch = new Search({
-    title: req.body.title,
-  });
-
-  const bookData = displaySearchResultData(bookSearch.title);
+  const bookData = displaySearchResultData(req.body.title);
   bookData
     .then((response) => {
-      res.render("search.results.ejs", {
-        books: response.data.items,
-      });
+      if (response.data.items === undefined) {
+        res.render("search.ejs", {
+          searchResultUndefined: "Book not found!",
+        });
+      } else {
+        res.render("search.results.ejs", {
+          books: response.data.items,
+          img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+          search: req.body.title,
+        });
+      }
     })
     .catch((error) => {
-      return res.status(404).send({
-        message: "no data returned",
-      });
+      res.render("search.ejs");
     });
 };
 
 exports.viewSearchedBook = (req, res) => {
   const bookData = displayBookData(req.params.bookId);
+
   bookData
     .then((response) => {
-      res.render("displayBookData.ejs", { book: response.data });
+      res.render("displayBookData.ejs", {
+        book: response.data.volumeInfo,
+        img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+      });
     })
     .catch((error) => {
       return res.status(404).send({
@@ -52,11 +60,17 @@ exports.create = (req, res) => {
     });
   }
 
+  if (!req.body.title || !req.body.authors || !req.body.pages) {
+    return res.status(400).send({
+      message: "Missing parameter",
+    });
+  }
+
   // create new book object
   const book = new Book({
     bookId: req.body.bookId,
     title: req.body.title,
-    author: req.body.author,
+    authors: req.body.authors,
     pages: req.body.pages,
     read: req.body.read,
     thumbnail: req.body.thumbnail,
@@ -66,11 +80,10 @@ exports.create = (req, res) => {
   });
 
   // save book
-  return book
+  book
     .save()
     .then((data) => {
-      console.log(data.status);
-      res.redirect("/books/" + data.id);
+      res.redirect(`/books/${data.id}`);
     })
     .catch((error) => {
       return res.status(404).send({
@@ -81,7 +94,10 @@ exports.create = (req, res) => {
 
 // get books from database
 exports.findAll = (req, res) => {
-  // find single book
+  if (req.query.status) {
+    return findByStatus(req.query.status, res);
+  }
+  // find all books
   Book.find()
     .then((data) => {
       res.render("collection.ejs", { books: data });
@@ -103,7 +119,9 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      res.render("collection.book.ejs", { book: data });
+      res.render("collection.book.ejs", {
+        book: data,
+      });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -118,11 +136,9 @@ exports.findOne = (req, res) => {
 };
 
 // find all books by reading status
-exports.findByStatus = (req, res) => {
-  console.log(req.query);
-  console.log("find by status", req.params.status);
+findByStatus = (status, res) => {
   Book.find({
-    status: req.params.status,
+    status: status,
   })
     .then((data) => {
       res.render("collection.ejs", { books: data });
@@ -142,22 +158,18 @@ exports.update = (req, res) => {
       message: "book doesn't exist",
     });
   }
+
   // Find book and update
   Book.findByIdAndUpdate(
     req.params.bookId,
     {
-      bookId: req.body.bookId,
-      title: req.body.title,
-      author: req.body.author,
-      pages: req.body.pages,
-      read: req.body.read,
-      thumbnail: req.body.thumbnail,
-      description: req.body.description,
-      status: req.body.status,
-      review: req.body.review,
+      $set: {
+        status: req.body.status,
+      },
     },
     {
       new: true,
+      useFindAndModify: false,
     }
   )
     .then((data) => {
@@ -166,7 +178,6 @@ exports.update = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      console.log(data.status);
       res.redirect("/books/" + data.id);
     })
     .catch((error) => {

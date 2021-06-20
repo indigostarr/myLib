@@ -1,46 +1,128 @@
-<!-- book.ejs -->
 <%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
+  <%- include("partials/nav.ejs") %>
 
-<!-- Create instructions -->
-<div id="header"></div>
-<main>
-  <a href="/"><div id="header">🔦 Search</div></a>
+  <div class="grid grid-cols-4 gap-12 w-full m-10 font-rounded h-96">
+    <div id="content" class="col-span-4">
+      <!-- Hero Image -->
+      <div
+        id="hero"
+        class="
+          flex flex-col
+          bg-gray-50
+          rounded-xl
+          p-6
+          items-center
+          border-gray-200 border-2
+        "
+      >
+        <img
+          id="search-image"
+          class="object-scale-down"
+          src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>"
+        />
+        <label class="mt-3 text-2xl font-bold"
+          ><input
+            id="title"
+            type="hidden"
+            name="title"
+            value="<%= book.title %>"
+          />
+          <%= book.title %></label
+        >
+        <label class=""
+          ><input
+            id="authors"
+            type="hidden"
+            name="authors"
+            value="<%= book.authors %>"
+          />by <%= book.authors %></label
+        >
 
-  <!-- Create a display area to show the new books -->
-
-  <form action="/books" method="POST" id="book-search" class="search-results">
-    <div id="<%= book.id %>" name="<%= book.id %>"></div>
-    <img
-      id="book-image"
-      src="<%= book.volumeInfo.imageLinks.thumbnail %>"
-    /><input
-      type="hidden"
-      name="thumbnail"
-      value="<%= book.volumeInfo.imageLinks.thumbnail %>"
-    />
-    <label
-      ><input type="hidden" name="title" value="<%= book.volumeInfo.title %>" />
-      <%= book.volumeInfo.title %></label
-    >
-    <label
-      ><input
+        <div class="space-x-4 mt-6">
+          <button
+            id="toRead"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+            "
+          >
+            📕 To Read
+          </button>
+          <button
+            id="reading"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+            "
+          >
+            👀 Reading
+          </button>
+          <button
+            id="read"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+            "
+          >
+            📚 Read
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Details -->
+    <div class="sm:col-span-2 col-span-4 place-self-start">
+      <h2 class="text-xl font-bold mb-6">Description</h2>
+      <input
+        id="description"
         type="hidden"
-        name="author"
-        value="<%= book.volumeInfo.authors %>"
+        name="description"
+        value="<%= book.description %>"
       />
-      <%= book.volumeInfo.authors %></label
-    >
-    <label
-      ><%= book.volumeInfo.pageCount %><input
-        type="hidden"
-        name="pages"
-        value="<%= book.volumeInfo.pageCount %>"
-    /></label>
-    <button type="submit" id="book-search__add">Add</button><br />
-    <label
-      ><input type="hidden" name="description" /> <%=
-      book.volumeInfo.description %></label
-    >
-  </form>
-</main>
+      <%- book.description %>
+    </div>
+    <div class="sm:col-span-2 col-span-4 place-self-start sm:col-start-3">
+      <h2 class="text-xl font-bold mb-6">Info</h2>
+      <span class="text-l font-bold mb-2">Pages: </span>
+      <label>
+        <%= book.pageCount %><input
+          id="pages"
+          type="hidden"
+          name="pages"
+          value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
+      /></label>
+      <input type="hidden" id="bookId" name="bookId" value="" />
+    </div>
+  </div>
+</div>
 <%- include("partials/footer.ejs") %>
