@@ -21,15 +21,14 @@ const request = require("request");
 
 // axios
 
-const displaySearchResultData = async (title) => {
-  try {
-    return await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=%22${title}%22`
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const displaySearchResultData = async (title) => {
+//   try {
+//     return await axios.get(
+//       `https://www.googleapis.com/books/v1/volumes?q=%22${title}%22`
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-
-module.exports = ("displaySearchResultData", displaySearchResultData);
+// module.exports = ("displaySearchResultData", displaySearchResultData);

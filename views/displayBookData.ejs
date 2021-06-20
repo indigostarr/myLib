@@ -1,4 +1,5 @@
-
+<%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
   <%- include("partials/nav.ejs") %>
 
   <div class="flex-1 p-10 text-2x1 font-bold">
@@ -7,28 +8,20 @@
     <form action="/books" method="POST" id="book-search" class="search-results">
       <div id="<%= book.id %>" name="<%= book.id %>"></div>
       <img
-            id="search-image"
-            src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>"
-          /><input
-            type="hidden"
-            name="thumbnail"
-            value="<%= (book.imageLinks) ? book.imageLinks.thumbnail :  img %>"
-          />
+        id="search-image"
+        src="<%= (book.imageLinks) ? book.imageLinks.smallThumbnail : img %>"
+      /><input
+        type="hidden"
+        name="thumbnail"
+        value="<%= (book.imageLinks) ? book.imageLinks.thumbnail :  img %>"
+      />
       <label
-        ><input
-          type="hidden"
-          name="title"
-          value="<%= book.title %>"
-        />
-        <%= book.title %></label
+        ><input type="hidden" name="title" value="<%= book.title %>" /> <%=
+        book.title %></label
       >
       <label
-        ><input
-          type="hidden"
-          name="authors"
-          value="<%= book.authors %>"
-        />
-        <%= book.authors %></label
+        ><input type="hidden" name="authors" value="<%= book.authors %>" /> <%=
+        book.authors %></label
       >
       <label
         ><%= book.pageCount %><input
@@ -37,30 +30,32 @@
           value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
       /></label>
       <input type="radio" onchange='this.form.submit();' name="status"
-      class="reading-status" id="to-read" value="📕 To Read" <% if (book.status ===
-      "📕 To Read") { %>checked <% }%>>
+      class="reading-status" id="to-read" value="📕 To Read" <% if (book.status
+      === "📕 To Read") { %>checked <% }%>>
       <label for="to-read" class="reading-status__label">📕 To Read</label>
       <input type="radio" onchange='this.form.submit();' name="status"
       class="reading-status" id="read" value="📚 Read" <% if (book.status ===
-      "📚 Read") { %>checked <% }%>><label for="read" class="reading-status__label"
+      "📚 Read") { %>checked <% }%>><label
+        for="read"
+        class="reading-status__label"
         >📚 Read</label
       >
       <input type="radio" onchange='this.form.submit();' name="status"
-      class="reading-status" id="reading" value="👀 Reading" <% if (book.status ===
-      "👀 Reading") { %>checked <% }%>><label
+      class="reading-status" id="reading" value="👀 Reading" <% if (book.status
+      === "👀 Reading") { %>checked <% }%>><label
         for="reading"
         class="reading-status__label"
         >👀 Reading</label
       ><br />
-      <label class="line-clamp-10" 
+      <label class="line-clamp-10"
         ><input
           type="hidden"
           name="description"
-          
           value="<%= book.description %>"
         />
         <%- book.description %></label
       >
     </form>
   </div>
+  <%- include("partials/footer.ejs") %>
 </div>

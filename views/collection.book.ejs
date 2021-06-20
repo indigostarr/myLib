@@ -1,5 +1,6 @@
-
-  <%- include("partials/nav.ejs") %>
+<%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
+<%- include("partials/nav.ejs") %>
 
   <div class="flex-1 p-10 text-2x1 font-bold">
     <!-- Create a display area to show the new books -->
@@ -16,7 +17,9 @@
           "
         >
           <!-- <div class="p-4 mx-2 text-center">  -->
-          <div class="col-span-2 row-span-1 align-middle text-center bg-gray-100">
+          <div
+            class="col-span-2 row-span-1 align-middle text-center bg-gray-100"
+          >
             <div id="<%= book.id %>" name="id" value="<%= book.id %>"></div>
             <img
               id="header-image"
@@ -34,8 +37,8 @@
               >📕 To Read</label
             >
             <input type="radio" onchange='this.form.submit();' name="status"
-            class="reading-status" id="read" value="📚 Read" <% if (book.status ===
-            "📚 Read") { %>checked <% }%>><label
+            class="reading-status" id="read" value="📚 Read" <% if (book.status
+            === "📚 Read") { %>checked <% }%>><label
               for="read"
               class="reading-status__label"
               >📚 Read</label
@@ -50,7 +53,7 @@
           </div>
 
           <!-- description div -->
-          <div class="col-span-1 row-span-1 text-sm ">
+          <div class="col-span-1 row-span-1 text-sm">
             <span class="8 line-clamp-10"><%- book.description %> </span>
           </div>
 
@@ -58,7 +61,7 @@
           <div class="col-span-1 row-span-1">
             <span>Pages</span>
             <span> <%= book.pages %> </span>
-              
+
             <!-- <input
               type="text"
               name="review"
@@ -66,10 +69,14 @@
               style="size: 2000; width: 80%; height: 150px"
               value="<%= book.review %>"
             /> -->
-            <a href="/books/delete/<%= book.id %>">Delete this book from your collection</a>
+            <a href="/books/delete/<%= book.id %>"
+              >Delete this book from your collection</a
+            >
           </div>
         </div>
       </form>
     </div>
   </div>
 </div>
+</div>
+<%- include("partials/footer.ejs") %>

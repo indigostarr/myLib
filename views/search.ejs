@@ -1,34 +1,37 @@
-<%- include("partials/nav.ejs") %>
+<%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
+  <%- include("partials/nav.ejs") %>
 
-<div class="flex-1 p-10 text-2x1 font-bold space-y-6 py-7">
-  <div class="text-center">🔦 Search</div>
-  <form action="/search" method="POST" id="book-search">
-    <div class="bg-white shadow p-4 mx-2 flex hover:shadow-lg">
-      <span class="w-auto flex justify-end items-center text-gray-500 p-2">
-      </span>
-      <input
-        class="w-full rounded p-4 focus:ring-0"
-        type="text"
-        name="title"
-        focus="outline-none"
-        placeholder="<%= typeof searchResultUndefined === 'undefined' ? 'Cal Newport' : searchResultUndefined %>"
-      />
-      <button
-        type="submit"
-        class="
-          bg-purple-500
-          hover:bg-purple-700
-          rounded
-          text-white
-          p-2
-          pl-4
-          pr-4
-        "
-      >
-        <p class="font-semibold text-xs">Search</p>
-      </button>
-    </div>
-  </form>
-  <!-- <img src="/assets/Brazuca Tree 3.png"> -->
+  <div class="flex-1 p-10 text-2x1 font-bold space-y-6 py-7">
+    <div class="text-center">🔦 Search</div>
+    <form action="/search" method="POST" id="book-search">
+      <div class="bg-white shadow p-4 mx-2 flex hover:shadow-lg">
+        <span class="w-auto flex justify-end items-center text-gray-500 p-2">
+        </span>
+        <input
+          class="w-full rounded p-4 focus:ring-0"
+          type="text"
+          name="title"
+          focus="outline-none"
+          placeholder="<%= typeof searchResultUndefined === 'undefined' ? 'Cal Newport' : searchResultUndefined %>"
+        />
+        <button
+          type="submit"
+          class="
+            bg-purple-500
+            hover:bg-purple-700
+            rounded
+            text-white
+            p-2
+            pl-4
+            pr-4
+          "
+        >
+          <p class="font-semibold text-xs">Search</p>
+        </button>
+      </div>
+    </form>
+    <!-- <img src="/assets/Brazuca Tree 3.png"> -->
+  </div>
 </div>
 <%- include("partials/footer.ejs") %>

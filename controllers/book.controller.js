@@ -1,8 +1,8 @@
 const Book = require("../models/book.model.js");
 const fileDir = "/Users/indigostarr/Documents/the_odin_project/myLib";
 const Search = require("../models/search.model.js");
-const displaySearchResultData = require("../app/app.js");
-const displayBookData = require("../app/bookdisplay.js");
+// const displaySearchResultData = require("../app/app.js");
+const googleBookAPI = require("../app/bookdisplay.js");
 const { response } = require("express");
 const { data } = require("autoprefixer");
 
@@ -13,7 +13,7 @@ exports.homepage = (req, res) => {
 
 // search page
 exports.search = (req, res) => {
-  const bookData = displaySearchResultData(req.body.title);
+  const bookData = googleBookAPI.displaySearchResultData(req.body.title);
 
   bookData
     .then((response) => {
@@ -25,7 +25,7 @@ exports.search = (req, res) => {
         res.render("search.results.ejs", {
           books: response.data.items,
           img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
-          search: req.body.title, 
+          search: req.body.title,
         });
       }
     })
@@ -35,11 +35,12 @@ exports.search = (req, res) => {
 };
 
 exports.viewSearchedBook = (req, res) => {
-  const bookData = displayBookData(req.params.bookId);
-  
+  const bookData = googleBookAPI.getBookData(req.params.bookId);
+
   bookData
     .then((response) => {
-      res.render("displayBookData.ejs", { 
+      console.log(response.data.volumeInfo);
+      res.render("displayBookData.ejs", {
         book: response.data.volumeInfo,
         img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
       });
@@ -64,7 +65,7 @@ exports.create = (req, res) => {
   const book = new Book({
     bookId: req.body.bookId,
     title: req.body.title,
-    author: req.body.author,
+    authors: req.body.authors,
     pages: req.body.pages,
     read: req.body.read,
     thumbnail: req.body.thumbnail,
@@ -73,7 +74,7 @@ exports.create = (req, res) => {
     review: "",
   });
 
-  console.log(book.author)
+  console.log(book.authors);
   // save book
   return book
     .save()
@@ -114,8 +115,7 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      res.render("collection.book.ejs", { book: data, 
-      });
+      res.render("collection.book.ejs", { book: data });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
@@ -135,7 +135,7 @@ findByStatus = (status, res) => {
     status: status,
   })
     .then((data) => {
-      res.render("collection.ejs", { books: data,});
+      res.render("collection.ejs", { books: data });
     })
     .catch((error) => {
       return res.status(404).send({
