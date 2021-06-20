@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js npm watch",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "build:css": "npx tailwindcss -i ./public/stylesheets/style.css -o ./public/stylesheets/tailwind.css"
   },
   "keywords": [
