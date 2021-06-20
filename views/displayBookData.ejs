@@ -113,14 +113,15 @@
     </div>
     <div class="sm:col-span-2 col-span-4 place-self-start sm:col-start-3">
       <h2 class="text-xl font-bold mb-6">Info</h2>
-      <label
-        >Pages: <%= book.pageCount %><input
+      <span class="text-l font-bold mb-2">Pages: </span>
+      <label>
+        <%= book.pageCount %><input
           id="pages"
           type="hidden"
           name="pages"
           value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
       /></label>
-      <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
+      <input type="hidden" id="bookId" name="bookId" value="" />
     </div>
   </div>
 </div>

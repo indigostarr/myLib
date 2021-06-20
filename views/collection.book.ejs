@@ -19,7 +19,7 @@
         <img
           id="search-image"
           class="object-scale-down"
-          src="<%= book.thumbnail %>"
+          src=" <%= book.thumbnail %>"
           alt="thumbnail"
         />
         <label class="mt-3 text-2xl font-bold"
@@ -144,18 +144,24 @@
     </div>
     <div class="sm:col-span-2 col-span-4 place-self-start sm:col-start-3">
       <h2 class="text-xl font-bold mb-6">Info</h2>
-      <label
-        >Pages: <%= book.pages %><input
-          id="pages"
-          type="hidden"
-          name="pages"
-          value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
-      /></label>
-      <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
-      <br />
-      <a href="/books/delete/<%= book.id %>"
-        >Delete this book from your collection</a
-      >
+      <div class="mb-2">
+        <span class="text-l font-bold">Pages: </span>
+        <label>
+          <%= book.pages %>
+          <input
+            id="pages"
+            type="hidden"
+            name="pages"
+            value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
+        /></label>
+      </div>
+      <div class="mb-2">
+        <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
+        <br />
+        <a href="/books/delete/<%= book.id %>" class="text-l underline"
+          >Delete this book from your collection</a
+        >
+      </div>
     </div>
   </div>
 </div>

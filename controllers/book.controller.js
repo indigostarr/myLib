@@ -15,7 +15,6 @@ exports.homepage = (req, res) => {
 // search page
 exports.search = (req, res) => {
   const bookData = displaySearchResultData(req.body.title);
-
   bookData
     .then((response) => {
       if (response.data.items === undefined) {
@@ -67,7 +66,6 @@ exports.create = (req, res) => {
     });
   }
 
-  console.log(req.body.title);
   // create new book object
   const book = new Book({
     bookId: req.body.bookId,
@@ -82,11 +80,10 @@ exports.create = (req, res) => {
   });
 
   // save book
-  return book
+  book
     .save()
     .then((data) => {
-      console.log("saved");
-      res.redirect("/books/" + data.id);
+      res.redirect(`/books/${data.id}`);
     })
     .catch((error) => {
       return res.status(404).send({
@@ -122,7 +119,9 @@ exports.findOne = (req, res) => {
           message: "unable to find " + req.params.title,
         });
       }
-      res.render("collection.book.ejs", { book: data });
+      res.render("collection.book.ejs", {
+        book: data,
+      });
     })
     .catch((error) => {
       if (error.kind === "ObjectId") {
