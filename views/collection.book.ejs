@@ -1,45 +1,168 @@
-<!-- book.ejs -->
 <%- include("partials/header.ejs") %>
+<div class="relative min-h-screen md:flex">
+  <%- include("partials/nav.ejs") %>
 
-
-  <!-- Create instructions -->
-  <div id="header"></div>
-  <main>
-    <a href="/"><div id="header">Book Search</div></a>
-
-    <!-- Create a display area to show the new books -->
-    <div id="<%= book.id %>" name="<%= book.id %>">
-      <div><%= book.status %></div>
-    <form action="/books/<%= book.id %>" method="POST" id="book-review">
-      <input name="_method" type="hidden" value="PUT" />
-      
-      <img id="header-image" src="<%= book.thumbnail %>" /><input
-        type="hidden"
-        name="thumbnail"
-        value="<%= book.thumbnail %>"
-      />
-      <label
-        ><input type="hidden" name="title" value="<%= book.title %>" /> <%=
-        book.title %></label
+  <div class="grid grid-cols-4 gap-12 w-full m-10 font-rounded h-96">
+    <div id="content" class="col-span-4">
+      <!-- Hero Image -->
+      <div
+        id="hero"
+        class="
+          flex flex-col
+          bg-gray-50
+          rounded-xl
+          p-6
+          items-center
+          border-gray-200 border-2
+        "
       >
-      <label><input type="hidden" name="author" value="<%= book.author %>"/>By <%= book.author %></label>
-      <input type="radio" onchange='this.form.submit();' name="status" class="reading-status" id="to-read" value="to-read"  <% if (book.status === "to-read") { %>checked <% }%>>
-        <label for="to-read" class="reading-status__label">📕 To Read</label>
-        <input type="radio" onchange='this.form.submit();' name="status" class="reading-status" id="read" value="read" <% if (book.status === "read") { %>checked <% }%>><label for="read" class="reading-status__label">📚 Read</label>
-        <input type="radio" onchange='this.form.submit();' name="status" class="reading-status"  id="reading" value="reading" <% if (book.status === "reading") { %>checked <% }%>><label for="reading" class="reading-status__label">👀 Reading</label>
-      <label><%= book.pages %><input type="hidden" name="pages" /></label>
-      <label><%= book.description %> <input type="hidden" name="description"
-      value="<%= book.description %>"/></label>
-      <input
-        type="text"
-        name="review"
-        id="review-textarea"
-        style="size: 2000; width: 80%; height: 150px"
-        value="<%= book.review %>"
-      />
-      <a href="/books/delete/<%= book.id %>">Won't Read</a></td> 
-    </form>
-  </div>
-  </main>
-  <%- include("partials/footer.ejs") %>
+        <img
+          id="search-image"
+          class="object-scale-down"
+          src=" <%= book.thumbnail %>"
+          alt="thumbnail"
+        />
+        <label class="mt-3 text-2xl font-bold"
+          ><input
+            id="title"
+            type="hidden"
+            name="title"
+            value="<%= book.title %>"
+          />
+          <%= book.title %></label
+        >
+        <label class=""
+          ><input
+            id="authors"
+            type="hidden"
+            name="authors"
+            value="<%= book.authors %>"
+          />by <%= book.authors %></label
+        >
 
+        <div class="space-x-4 mt-6">
+          <button
+            id="toRead"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+              <%
+              if
+              (book.status
+              ===
+              'toRead')
+              {
+              %>bg-blue-50
+              border-blue-400 border-2
+              <%
+              }%>
+            "
+          >
+            📕 To Read
+          </button>
+          <button
+            id="reading"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+              <%
+              if
+              (book.status
+              ===
+              'reading')
+              {
+              %>bg-blue-50
+              border-blue-400 border-2
+              <%
+              }%>
+            "
+          >
+            👀 Reading
+          </button>
+          <button
+            id="read"
+            class="
+              px-5
+              py-3
+              shadow-lg
+              rounded-xl
+              font-semibold
+              text-gray-900
+              bg-white
+              focus:outline-none
+              hover:-translate-y-0.5
+              transform
+              transition
+              w-32
+              <%
+              if
+              (book.status
+              ===
+              'read')
+              {
+              %>bg-blue-50
+              border-blue-400 border-2
+              <%
+              }%>
+            "
+          >
+            📚 Read
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Details -->
+    <div class="sm:col-span-2 col-span-4 place-self-start">
+      <h2 class="text-xl font-bold mb-6">Description</h2>
+      <input
+        id="description"
+        type="hidden"
+        name="description"
+        value="<%= book.description %>"
+      />
+      <%- book.description %>
+    </div>
+    <div class="sm:col-span-2 col-span-4 place-self-start sm:col-start-3">
+      <h2 class="text-xl font-bold mb-6">Info</h2>
+      <div class="mb-2">
+        <span class="text-l font-bold">Pages: </span>
+        <label>
+          <%= book.pages %>
+          <input
+            id="pages"
+            type="hidden"
+            name="pages"
+            value="<%= (!book.pageCount) ? '?' : book.pageCount %>"
+        /></label>
+      </div>
+      <div class="mb-2">
+        <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
+        <br />
+        <a href="/books/delete/<%= book.id %>" class="text-l underline"
+          >Delete this book from your collection</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("partials/footer.ejs") %>

@@ -1,33 +1,110 @@
-<!-- search.ejs -->
 <%- include("partials/header.ejs") %>
-  <body>
-    <p> 🔦 Search </p>
-    <div id="book-search">
-      <form action="/search" method="POST" id="book-search">
-            <input type="text" id="search" name="title" placeholder="book"/>
-            <button type="submit" id="book-form__search">Search by Title</button>
-        </div>
-      </form>
-      <main>
-      <ul class="books">
-        <% for(var i = 0; i < books.length; i++) {%>
-        <li class="book-result">
-          <!-- Output name from the iterated book -->
-          <!-- <form action="/books" method="POST" id="book-search"> -->
-          <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
-          <img id="search-image" src="<%= books[i].volumeInfo.imageLinks.smallThumbnail %>" /><input
-        type="hidden"
-        name="thumbnail"
-        value="<%= books[i].volumeInfo.imageLinks.thumbnail %>"
-      />
-      <a href="/search/<%= books[i].id %>"><label>
-            <input type="hidden" name="title" value="<%= books[i].volumeInfo.title %>"> <%= books[i].volumeInfo.title %></label></a
-          >
-          <label><input type="hidden" name="author" value="<%= books[i].volumeInfo.authors %>"> <%= books[i].volumeInfo.authors %></label>
-          <label><input type="hidden" name="pages" value="<%= books[i].volumeInfo.pageCount %>"> <%= books[i].volumeInfo.pageCount %></label>
-          <!-- <button type="submit" id="book-search__add">Add</button><br /> -->
+<div class="relative min-h-screen md:flex">
+  <%- include("partials/nav.ejs") %>
+
+  <!-- container for content and spacing with nav bar -->
+  <div class="flex-1 p-10 text-2x1 font-bold">
+    <div class="text-center">🔦 Search</div>
+    <form action="/search" method="POST" id="book-search">
+      <div class="bg-white shadow p-4 mx-2 flex hover:shadow-lg">
+        <span class="w-auto flex justify-end items-center text-gray-500 p-2">
+        </span>
+        <input
+          class="w-full rounded p-4"
+          type="text"
+          name="title"
+          focus="outline-none"
+          placeholder="<%= search %>"
+        />
+        <button
+          type="submit"
+          class="
+            bg-purple-500
+            hover:bg-purple-700
+            rounded
+            text-white
+            p-2
+            pl-4
+            pr-4
+          "
+        >
+          <p class="font-semibold text-xs">Search</p>
+        </button>
+      </div>
+    </form>
+
+    <ul class="space-y-4">
+      <!-- list item -->
+      <% for(var i = 0; i < books.length; i++) {%>
+
+      <a href="/search/<%= books[i].id %>"
+        ><li
+          class="
+            p-4
+            mx-2
+            bg-gray-50
+            antialiased
+            grid grid-cols-3
+            gap-4
+            align-content:
+            center
+            rounded
+            hover:#F0E7FF
+          "
+        >
+          <div class="ml-3 pr-3 grid-cols-1 self-center justify-self-center">
+            <!-- Output name from the iterated book -->
+            <!-- <form action="/books" method="POST" id="book-search"> -->
+            <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
+            <img
+              id="search-image"
+              src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"
+            /><input
+              type="hidden"
+              name="thumbnail"
+              value="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.Thumbnail :  img %>"
+            />
+          </div>
+          <!-- container for title and authors -->
+          <div class="grid-cols-2 self-center">
+            <div class="space-y-2 ml-3 pr-3">
+              <div class="text-base leading-4 font-normal">
+                <a href="/search/<%= books[i].id %>">
+                  <%= books[i].volumeInfo.title %></a
+                >
+              </div>
+            </div>
+
+            <div class="space-y-2 ml-3 pr-3 self-center">
+              <div class="text-sm leading-4 font-normal">
+                <span class="text-xs leading-4 font-normal text-gray-500">
+                  By
+                </span>
+                <%- books[i].volumeInfo.authors %>
+              </div>
+            </div>
+          </div>
+
+          <div class="pr-3 grid-cols-3 self-center">
+            <div class="ml-3 my-3 border-gray-100 p-1">
+              <div class="uppercase text-xs leading-4 font-medium"></div>
+              <div
+                class="
+                  text-center text-sm
+                  leading-4
+                  font-semibold
+                  text-gray-800
+                "
+              >
+                Pages <%= (!books[i].volumeInfo.pageCount) ? "?" :
+                books[i].volumeInfo.pageCount %>
+              </div>
+            </div>
+          </div>
         </li>
         <% } %>
-      </ul>
-    </main>
-    <%- include("partials/footer.ejs") %>
+      </a>
+    </ul>
+  </div>
+</div>
+<%- include("partials/footer.ejs") %>

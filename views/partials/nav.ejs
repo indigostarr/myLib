@@ -1,0 +1,116 @@
+<!-- mobile menu bar -->
+<div class="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+  <!-- logo -->
+  <div class="flex justify-between">
+    <img
+      src="/assets/Brazuca Tree 3.png"
+      class="h-20 w-20"
+      viewBox="0 0 24 24"
+    />
+    <a href="/books" class="p-4 self-center text-white font-bold">myLib</a>
+  </div>
+  <!-- mobile menu button -->
+  <button class="mobile-menu-button p-4 forcus:outline-none focus:bg-gray-600">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h8m-8 6h16"
+      />
+    </svg>
+  </button>
+</div>
+
+<!-- nav sidebar -->
+<div
+  class="
+    sidebar
+    bg-gray-50
+    text-black
+    w-64
+    space-y-6
+    py-7
+    px-2
+    absolute
+    inset-y-0
+    left-0
+    transform
+    -translate-x-full
+    md:relative
+    md:translate-x-0
+    transition
+    duration-200
+    ease-in-out
+  "
+>
+  <!-- logo -->
+  <a
+    href="/books"
+    class="text-black flex-items-center space-x-2 px-4"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    ><span class="w-8 h-8 text-2x1 font-bold">✨ MyLib</span>
+  </a>
+  <nav>
+    <a
+      href="/"
+      class="
+        block
+        py-2.5
+        px-4
+        rounded
+        transition
+        duration-200
+        hover:bg-gray-100
+      "
+      >🔦 Search</a
+    >
+    <a
+      href="/books?status=toRead"
+      class="
+        block
+        py-2.5
+        px-4
+        rounded
+        transition
+        duration-200
+        hover:bg-gray-100
+      "
+      >📕 To Read</a
+    >
+    <a
+      href="/books?status=reading"
+      class="
+        block
+        py-2.5
+        px-4
+        rounded
+        transition
+        duration-200
+        hover:bg-gray-100
+      "
+      >👀 Reading</a
+    >
+    <a
+      href="/books?status=read"
+      class="
+        block
+        py-2.5
+        px-4
+        rounded
+        transition
+        duration-200
+        hover:bg-gray-100
+      "
+      >📚 Read</a
+    >
+  </nav>
+</div>
