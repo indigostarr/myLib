@@ -76,3 +76,4 @@ typings/
 .fusebox/
 
 # remove files
+.DS_Store
