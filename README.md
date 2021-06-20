@@ -16,10 +16,11 @@ Frontend was built with EJS and tailwind
 ### Package dependencies
 
 - axios
-- body-parser
-- EJS
-- express
-- tailwind
+
+* body-parser
+* EJS
+* express
+* tailwind
 
 ## Use
 

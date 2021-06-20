@@ -19,7 +19,6 @@ const plugin = require("tailwindcss/plugin");
 // Require book routes and models
 require("./routes/book.routes.js")(app);
 require("./models/book.model");
-// require("./js/addbook");
 
 // Configuring the database
 const dbConfig = require("./config/database.config.js");
@@ -43,6 +42,6 @@ mongoose
   });
 
 // create a server the browser can listen to
-app.listen(2080, function () {
+app.listen(process.env.PORT, function () {
   console.log("Listening to 2080");
 });

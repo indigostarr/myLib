@@ -1,5 +1,4 @@
 const Book = require("../models/book.model.js");
-const Search = require("../models/search.model.js");
 const {
   displayBookData,
   displaySearchResultData,
