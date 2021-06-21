@@ -3,7 +3,6 @@ const mobileBtn = document.querySelector(".mobile-menu-button");
 const sidebar = document.querySelector(".sidebar");
 
 mobileBtn.addEventListener("click", (e) => {
-  console.log(e.target);
   sidebar.classList.toggle("-translate-x-full");
 });
 
@@ -62,6 +61,7 @@ function updateStatus(status) {
     categories: document.getElementById("categories").value,
   };
 
+  console.log(data.publishedDate, data.averageRating, data.categories, route);
   fetch(route, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

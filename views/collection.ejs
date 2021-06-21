@@ -77,37 +77,36 @@
                     text-gray-800
                   "
                 >
-                  <% if ( books[i].status === "toRead") { %> 📕 To Read <% }
-                  else if ( books[i].status === "read") { %> 📚 Read <% } else {
-                  %> 👀 Reading <% }%>
                 </span>
+                <% if ( books[i].status === "toRead") { %> 📕 To Read <% } else
+                if ( books[i].status === "read") { %> 📚 Read <% } else { %> 👀
+                Reading <% }%>
               </div>
-
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Pages:
-                  </span>
-                  <%= (!books[i].pages) ? "?" : books[i].pages %>
-                </div>
+            </div>
+            <div class="space-y-2 ml-3 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  Pages:
+                </span>
+                <%= (!books[i].pages) ? "?" : books[i].pages %>
               </div>
+            </div>
 
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Published Date:
-                  </span>
-                  <%- books[i].publishedDate %>
-                </div>
+            <div class="space-y-2 ml-3 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  Published Date:
+                </span>
+                <%- books[i].publishedDate %>
               </div>
+            </div>
 
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Average Rating:
-                  </span>
-                  <%- books[i].averageRating %>
-                </div>
+            <div class="space-y-2 ml-3 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  Average Rating:
+                </span>
+                <%- books[i].averageRating %>
               </div>
             </div>
           </div>

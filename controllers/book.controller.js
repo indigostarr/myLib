@@ -75,9 +75,12 @@ exports.create = (req, res) => {
     thumbnail: req.body.thumbnail,
     description: req.body.description,
     status: req.body.status,
-    review: "",
+    publishedDate: req.body.publishedDate,
+    averageRating: req.body.averageRating,
+    categories: req.body.categories,
   });
 
+  console.log(req.body.publishedDate);
   // save book
   book
     .save()
