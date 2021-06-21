@@ -61,7 +61,6 @@ function updateStatus(status) {
     categories: document.getElementById("categories").value,
   };
 
-  console.log(data.publishedDate, data.averageRating, data.categories, route);
   fetch(route, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
