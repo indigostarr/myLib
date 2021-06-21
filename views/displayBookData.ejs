@@ -119,12 +119,13 @@
       <div class="mb-2">
         <span class="text-l font-bold mb-4">Categories: </span>
         <label>
-          <%= book.categories %><input
+          <input
             id="categories"
             type="hidden"
             name="categories"
             value=" <%= book.categories %>"
-        /></label>
+          /><%= book.categories %></label
+        >
         <input type="hidden" id="bookId" name="bookId" value="" />
       </div>
       <!-- pages -->
@@ -143,12 +144,13 @@
       <div class="mb-2">
         <span class="text-l font-bold mb-4">Published Date: </span>
         <label>
-          <%= book.publishedDate %><input
+          <input
             id="publishedDate"
             type="hidden"
             name="publishedDate"
             value="<%= book.publishedDate %>"
-        /></label>
+          /><%= book.publishedDate %></label
+        >
         <input type="hidden" id="bookId" name="bookId" value="" />
       </div>
       <!-- rating -->

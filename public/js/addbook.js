@@ -3,7 +3,6 @@ const mobileBtn = document.querySelector(".mobile-menu-button");
 const sidebar = document.querySelector(".sidebar");
 
 mobileBtn.addEventListener("click", (e) => {
-  console.log(e.target);
   sidebar.classList.toggle("-translate-x-full");
 });
 
