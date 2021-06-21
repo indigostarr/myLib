@@ -3,6 +3,7 @@
   <%- include("partials/nav.ejs") %>
 
   <div class="grid grid-cols-4 gap-12 w-full m-10 h-96">
+    <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
     <div id="content" class="col-span-4">
       <!-- Hero Image -->
       <div
@@ -201,7 +202,6 @@
 
       <!--  -->
       <div class="mb-2">
-        <input type="hidden" id="bookId" name="bookId" value="<%= book.id %>" />
         <br />
         <a href="/books/delete/<%= book.id %>" class="text-l underline"
           >Delete this book from your collection</a
