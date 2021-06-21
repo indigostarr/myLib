@@ -48,16 +48,22 @@ function toggleStatusStyle(element) {
 function updateStatus(status) {
   const bookId = document.getElementById("bookId").value;
   const route = bookId ? `/books/${bookId}` : "/books";
+  const publishedDate = document.getElementById("publishedDate").value;
+  const authors = document.getElementById("authors").value;
 
   let data = {
     status: status,
     title: document.getElementById("title").value,
     bookId: bookId,
     thumbnail: document.getElementById("search-image").src,
-    authors: document.getElementById("authors").value,
+    authors: authors.split(",").join(", "),
     pages: document.getElementById("pages").value,
     description: document.getElementById("description").value,
-    publishedDate: document.getElementById("publishedDate").value,
+    publishedDate: new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    }).format(new Date(publishedDate)),
     averageRating: document.getElementById("averageRating").value,
     categories: document.getElementById("categories").value,
   };

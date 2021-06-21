@@ -67,7 +67,7 @@
           </div>
           <!-- container for title and authors -->
           <div class="grid-cols-2 self-center">
-            <div class="space-y-2 ml-3 pr-3">
+            <div class="space-y-2 mb-2  pr-3">
               <div class="text-base leading-4 font-normal">
                 <a href="/search/<%= books[i].id %>">
                   <%= books[i].volumeInfo.title %></a
@@ -75,53 +75,53 @@
               </div>
             </div>
 
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span class="text-sm leading-4 font-normal text-gray-500">
-                  By
+                  <%= (!books[i].volumeInfo.authors) ? "" : "By:" %> 
                 </span>
-                <%- books[i].volumeInfo.authors %>
+                <%= (!books[i].volumeInfo.authors) ? "" : books[i].volumeInfo.authors.join(", ") %>
               </div>
             </div>
             <!-- categories -->
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
-                <span class="text-sm leading-4 font-normal text-gray-500"
-                  >Categories</span
-                >
-
-                <%- books[i].volumeInfo.categories %>
+                <span class="text-sm leading-4 font-normal text-gray-500"></span>
+                  <%= (!books[i].categories) ? "" : "Categories:" %>
+                </span>
+                <%= (!books[i].categories) ? "" : books[i].categories %>
               </div>
             </div>
           </div>
 
           <!-- other book info -->
           <div class="pr-3 grid-cols-3 self-center">
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 ml-3 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span class="text-sm leading-4 font-normal text-gray-500">
-                  Pages:
+                  <%= (!books[i].volumeInfo.pageCount) ? "" : "Pages:" %>
                 </span>
-                <%= (!books[i].volumeInfo.pageCount) ? "?" :
-                books[i].volumeInfo.pageCount %>
+                <%= (!books[i].volumeInfo.pageCount) ? "" : books[i].volumeInfo.pageCount %>
               </div>
             </div>
 
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 ml-3 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span class="text-sm leading-4 font-normal text-gray-500">
-                  Published Date:
+                  <%= (!books[i].volumeInfo.publishedDate) ? "" : "Published Date:" %>
                 </span>
-                <%- books[i].volumeInfo.publishedDate %>
+                <%= (!books[i].volumeInfo.publishedDate) ? "" : new Intl.DateTimeFormat('en-US', {
+                  year: 'numeric', month: 'short', day: '2-digit'}).format(new
+                  Date(books[i].volumeInfo.publishedDate)) %>
               </div>
             </div>
 
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 ml-3 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span class="text-sm leading-4 font-normal text-gray-500">
-                  Average Rating:
+                  <%= (!books[i].volumeInfo.averageRating) ? "" : "Average Rating:" %> 
                 </span>
-                <%- books[i].volumeInfo.averageRating %>
+                <%= (!books[i].volumeInfo.averageRating) ? "" : books[i].volumeInfo.averageRating %> 
               </div>
             </div>
           </div>

@@ -39,35 +39,35 @@
           <!-- container for title and authors -->
           <div class="grid-cols-2 self-center">
             <!-- div for title -->
-            <div class="space-y-2 ml-3 pr-3">
+            <div class="space-y-2 mb-2 pr-3">
               <div class="text-base leading-4 font-normal space-y-2">
                 <a href="/books/<%= books[i].id %>"> <%= books[i].title %></a>
               </div>
             </div>
             <!-- div for author -->
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 pr-3 self-center">
               <div class="text-sm leading-4 font-normal">
                 <span class="text-xs leading-4 font-normal text-gray-500">
-                  By
+                  <%= (!books[i].authors) ? "" : "By:" %>
                 </span>
-                <%= books[i].authors %>
+                <%= (!books[i].authors) ? "" : books[i].authors %>
               </div>
             </div>
             <!-- categories -->
-            <div class="space-y-2 ml-3 pr-3 self-center">
-              <div class="text-base leading-4 font-normal">
-                <span class="text-sm leading-4 font-normal text-gray-500"
-                  >Category</span
+            <div class="space-y-2 pr-3 self-center">
+              <div class="text-sm leading-4 font-normal">
+                <span class="text-xs leading-4 font-normal text-gray-500"
+                  ><%= (!books[i].categories) ? "" : "Categories:" %></span
                 >
 
-                <%- books[i].categories %>
+                <%= (!books[i].categories) ? "" : books[i].categories %>
               </div>
             </div>
           </div>
 
           <!-- other book info -->
           <div class="pr-3 grid-cols-3 self-center">
-            <div class="space-y-2 ml-3 pr-3 self-center">
+            <div class="space-y-2 mb-2 ml-3 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span
                   class="
@@ -82,32 +82,31 @@
                   %> 👀 Reading <% }%>
                 </span>
               </div>
-
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Pages:
-                  </span>
-                  <%= (!books[i].pages) ? "?" : books[i].pages %>
-                </div>
+            </div>
+            <div class="space-y-2 ml-3 mb-2 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  <%= (!books[i].pages) ? "" : "Pages:" %>
+                </span>
+                <%= (!books[i].pages) ? "" : books[i].pages %>
               </div>
+            </div>
 
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Published Date:
-                  </span>
-                  <%- books[i].publishedDate %>
-                </div>
+            <div class="space-y-2 ml-3 mb-2 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  <%= (!books[i].publishedDate) ? "" : "Published Date:" %>
+                </span>
+                <%= (!books[i].publishedDate) ? "" : books[i].publishedDate %>
               </div>
+            </div>
 
-              <div class="space-y-2 ml-3 pr-3 self-center">
-                <div class="text-base leading-4 font-normal">
-                  <span class="text-sm leading-4 font-normal text-gray-500">
-                    Average Rating:
-                  </span>
-                  <%- books[i].averageRating %>
-                </div>
+            <div class="space-y-2 ml-3 mb-2 pr-3 self-center">
+              <div class="text-base leading-4 font-normal">
+                <span class="text-sm leading-4 font-normal text-gray-500">
+                  <%= (!books[i].averageRating) ? "" : "Average Rating:" %>
+                </span>
+                <%= (!books[i].averageRating) ? "" : books[i].averageRating %>
               </div>
             </div>
           </div>
