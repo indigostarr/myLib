@@ -80,6 +80,7 @@ exports.create = (req, res) => {
     categories: req.body.categories,
   });
 
+  console.log(req.body.publishedDate);
   // save book
   book
     .save()

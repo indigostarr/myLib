@@ -58,6 +58,7 @@
             <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
             <img
               id="search-image"
+              class="object-scale-down"
               src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"
             /><input
               type="hidden"
