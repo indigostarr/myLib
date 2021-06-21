@@ -26,17 +26,17 @@ Frontend was built using EJS vies and with [Tailwind CSS](https://v1.tailwindcss
 
 ### Install dependencies for backend if you do not already have these globall installed
 
-///
+```
 $ npm install express body-parser axios mongoose --save
-///
+```
 
 ### Connect to your MongoDB database by adding your url to the database.config.js file
 
 ### Install dependencies for frontend
 
-///
+```
 $ npm install ejs tailwind --save
-///
+```
 
 More information on how to install and use [Tailwind](https://v1.tailwindcss.com/docs/installation)
 
