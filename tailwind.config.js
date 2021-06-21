@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        rounded: ["ui-rounded", "SF Pro Rounded", "san-serif"],
+        rounded: ["ui-rounded", "'SF Pro Rounded'", "sans-serif"],
       },
     },
   },
