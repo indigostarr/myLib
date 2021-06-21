@@ -58,7 +58,7 @@
             <div id="<%= books[i].id %>" name="<%= books[i].id %>"></div>
             <img
               id="search-image"
-              class="object-scale-down"
+              class="object-scale-down text-center"
               src="<%= (books[i].volumeInfo.imageLinks) ? books[i].volumeInfo.imageLinks.smallThumbnail : img %>"
             /><input
               type="hidden"
@@ -88,9 +88,9 @@
             <div class="space-y-2 mb-2 pr-3 self-center">
               <div class="text-base leading-4 font-normal">
                 <span class="text-sm leading-4 font-normal text-gray-500"></span>
-                  <%= (!books[i].categories) ? "" : "Categories:" %>
+                  <%= (!books[i].volumeInfo.categories) ? "" : "Categories:" %>
                 </span>
-                <%= (!books[i].categories) ? "" : books[i].categories %>
+                <%= (!books[i].volumeInfo.categories) ? "" : books[i].volumeInfo.categories %>
               </div>
             </div>
           </div>

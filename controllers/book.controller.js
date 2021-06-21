@@ -23,7 +23,7 @@ exports.search = (req, res) => {
       } else {
         res.render("search.results.ejs", {
           books: response.data.items,
-          img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+          img: "/assets/book.png",
           search: req.body.title,
         });
       }
@@ -40,7 +40,7 @@ exports.viewSearchedBook = (req, res) => {
     .then((response) => {
       res.render("displayBookData.ejs", {
         book: response.data.volumeInfo,
-        img: "https://www.adazing.com/wp-content/uploads/2019/02/open-book-clipart-07-300x300.png",
+        img: "https://www.clipartmax.com/png/small/238-2382703_books-coloring-thumbnail-size-open-book-clip-art-pages-book-black-and.png",
       });
     })
     .catch((error) => {
@@ -80,7 +80,6 @@ exports.create = (req, res) => {
     categories: req.body.categories,
   });
 
-  console.log(req.body.publishedDate);
   // save book
   book
     .save()
