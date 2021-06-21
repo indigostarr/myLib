@@ -1,30 +1,43 @@
 # myLib
 
-## Description
+## Functionality
 
 Personal library management to store books by category.
 
-1. Search for books using the google books API
-2. Add books to your collection by indicating whether you have read, are reading, or would like to read
-3. Review your full collection or by category
-
-## Install
-
-Backend was built with Node.js, Express.js, mongoose and MongoDB
-Frontend was built with EJS and tailwind
+1. Search [Google Books API](https://developers.google.com/books)
+2. View search results and click on a book for more information
+3. Add books to your collection by indicating whether you have 📚 Read, are 👀 Reading, or would like 📕 To Read
+4. Review your full collection or by each reading status category
 
 ### Package dependencies
 
+- mongoose
+- mongoDB
+- express
 - axios
+- body-parser
+- EJS
+- tailwind
 
-* body-parser
-* EJS
-* express
-* tailwind
+## Install
 
-## Use
+Backend was built with Node.js, Express.js, and mongoose and MongoDB
+Frontend was built using EJS vies and with [Tailwind CSS](https://v1.tailwindcss.com/)
 
-## To-do
+### Install dependencies for backend if you do not already have these globall installed
 
-1. Add links to purchase
-2. Add book reviews
+///
+$ npm install express body-parser axios mongoose --save
+///
+
+### Connect to your MongoDB database by adding your url to the database.config.js file
+
+### Install dependencies for frontend
+
+///
+$ npm install ejs tailwind --save
+///
+
+More information on how to install and use [Tailwind](https://v1.tailwindcss.com/docs/installation)
+
+## Demo

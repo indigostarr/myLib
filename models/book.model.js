@@ -9,6 +9,9 @@ const BookSchema = mongoose.Schema(
     thumbnail: String,
     description: String,
     status: String,
+    publishedDate: String,
+    averageRating: String,
+    categories: String,
   },
   {
     timestamps: true,

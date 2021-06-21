@@ -57,6 +57,9 @@ function updateStatus(status) {
     authors: document.getElementById("authors").value,
     pages: document.getElementById("pages").value,
     description: document.getElementById("description").value,
+    publishedDate: document.getElementById("publishedDate").value,
+    averageRating: document.getElementById("averageRating").value,
+    categories: document.getElementById("categories").value,
   };
 
   fetch(route, {
@@ -71,3 +74,51 @@ function updateStatus(status) {
       console.log(err);
     });
 }
+
+// function updateStatus(status) {
+//   const googleBookId = document.getElementById("googlebookId").value;
+
+//   const route = data
+//     .findById(googleBookID)
+//     .then((data) => {
+//       if (!data) {
+//         return "/books";
+//       }
+//       return `/books/${bookId}`;
+//     })
+//     .catch((error) => {
+//       if (error.kind === "ObjectId") {
+//         return res.status(404).send({
+//           message: "unable to find " + req.params.title,
+//         });
+//       }
+//       return res.status(500).send({
+//         message: "unable to retrieve " + req.params.title,
+//       });
+//     });
+
+//   let data = {
+//     status: status,
+//     title: document.getElementById("title").value,
+//     bookId: bookId,
+//     thumbnail: document.getElementById("search-image").src,
+//     authors: document.getElementById("authors").value,
+//     pages: document.getElementById("pages").value,
+//     description: document.getElementById("description").value,
+//     publishedDate: document.getElementById("publishedDate").value,
+//     averageRating: document.getElementById("averageRating").value,
+//     categories: document.getElementById("categories").value,
+//   };
+
+//   fetch(route, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   })
+//     .then((res) => {
+//       console.log("Request complete! response:", res);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
