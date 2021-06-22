@@ -20,6 +20,12 @@ const plugin = require("tailwindcss/plugin");
 require("./routes/book.routes.js")(app);
 require("./models/book.model");
 
+// add port for local or deploy
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 2080;
+}
+
 // Configuring the database
 const dbConfig = require("./config/database.config.js");
 const mongoose = require("mongoose");
@@ -42,6 +48,6 @@ mongoose
   });
 
 // create a server the browser can listen to
-app.listen(2000, function () {
-  console.log("Listening to 2000");
+app.listen(port, function () {
+  console.log("Listening to 2080");
 });
