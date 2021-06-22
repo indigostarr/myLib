@@ -40,5 +40,5 @@ $ npm install ejs tailwind --save
 
 More information on how to install and use [Tailwind](https://v1.tailwindcss.com/docs/installation)
 
-## Demo
+## [Demo](https://indigostarr-mylib.herokuapp.com/)
 ![mylibsmallest](https://user-images.githubusercontent.com/65923849/122819926-489c5900-d298-11eb-88c4-2ed1e49d099d.gif)
