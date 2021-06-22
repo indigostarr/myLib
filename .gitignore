@@ -76,10 +76,5 @@ typings/
 .fusebox/
 
 # remove files
+echo .DS_Store >> .gitignore
 .DS_Store
-.DS_Store
-public/.DS_Store
-public/.DS_Store
-public/.DS_Store
-public/.DS_Store
-public/.DS_Store
