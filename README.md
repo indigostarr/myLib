@@ -21,8 +21,8 @@ Personal library management to store books by category.
 
 ## Install
 
-Backend was built with Node.js, Express.js, and mongoose and MongoDB
-Frontend was built using EJS vies and with [Tailwind CSS](https://v1.tailwindcss.com/)
+Backend was built with Node.js, Express.js, mongoose and MongoDB
+Frontend was built using EJS views and with [Tailwind CSS](https://v1.tailwindcss.com/)
 
 ### Install dependencies for backend if you do not already have these globall installed
 
@@ -41,3 +41,4 @@ $ npm install ejs tailwind --save
 More information on how to install and use [Tailwind](https://v1.tailwindcss.com/docs/installation)
 
 ## Demo
+![mylibsmallest](https://user-images.githubusercontent.com/65923849/122819926-489c5900-d298-11eb-88c4-2ed1e49d099d.gif)
