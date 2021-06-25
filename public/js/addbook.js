@@ -37,11 +37,11 @@ function toggleStatusStyle(element) {
   buttons.forEach((button) => {
     button.classList.remove("bg-blue-50");
     button.classList.remove("border-blue-400");
-    button.classList.remove("border-2");
+    button.classList.remove("border-1");
   });
   element.classList.add("bg-blue-50");
   element.classList.add("border-blue-400");
-  element.classList.add("border-2");
+  element.classList.add("border-1");
 }
 
 function updateStatus(status) {
