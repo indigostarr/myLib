@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") %>
-<div class="relative min-h-screen md:flex">
+<div class="relative min-h-screen md:flex md:flex-row">
   <%- include("partials/nav.ejs") %>
 
   <div class="grid grid-cols-4 gap-12 w-full m-10 font-rounded h-96">
@@ -44,7 +44,7 @@
             id="toRead"
             class="
               px-5
-              py-3
+              py-2
               shadow-lg
               rounded-xl
               font-semibold
@@ -63,7 +63,7 @@
             id="reading"
             class="
               px-5
-              py-3
+              py-2
               shadow-lg
               rounded-xl
               font-semibold
@@ -82,7 +82,7 @@
             id="read"
             class="
               px-5
-              py-3
+              py-2
               shadow-lg
               rounded-xl
               font-semibold
@@ -129,7 +129,6 @@
             value=" <%= book.categories %>"
           /><%= book.categories %></label
         >
-        <input type="hidden" id="bookId" name="bookId" value="" />
       </div>
       <!-- pages -->
       <div class="mb-2">
@@ -143,7 +142,6 @@
             name="pages"
             value="<%= (!book.pageCount) ? '' : book.pageCount %>"
         /></label>
-        <input type="hidden" id="bookId" name="bookId" value="" />
       </div>
       <!-- published date -->
       <div class="mb-2">
@@ -159,7 +157,6 @@
             name="publishedDate"
             value="<%= book.publishedDate %>"
         /></label>
-        <input type="hidden" id="bookId" name="bookId" value="" />
       </div>
       <!-- rating -->
       <div class="mb-2">
@@ -173,7 +170,7 @@
             name="averageRating"
             value="<%= book.averageRating %>"
         /></label>
-        <input type="hidden" id="bookId" name="bookId" value="" />
+        <input type="hidden" id="bookId" name="bookId" value="<%= bookId %>" />
       </div>
       <!--  -->
     </div>
