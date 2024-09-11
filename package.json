@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js npm watch",
     "start": "node server.js",
-    "build:css": "npx tailwindcss -i ./public/stylesheets/style.css -o ./public/stylesheets/tailwind.css"
+    "build:css": "npx tailwindcss -i ./public/stylesheets/style.css -o ./public/stylesheets/tailwind.css --minify"
   },
   "keywords": [
     "Express",
@@ -27,7 +27,7 @@
     "axios": "^1.6.5",
     "body-parser": ">=1.20.3",
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
+    "express": "^5.0.0",
     "heroku": "^7.7.8",
     "mongoose": "^5.12.14",
     "nodemon": "^2.0.7",
